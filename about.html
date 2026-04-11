@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Noor Boutique</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --pink:#f8e8ee; --cream:#fffaf5; --beige:#f3e9dc; --navy:#1a2744; --gold:#c9a96e; --gold-light:#f0d9a8; }
+    * { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; background-color:var(--cream); color:var(--navy); }
+    h1,h2,h3,.serif { font-family:'Playfair Display',serif; }
+    .navbar { background:rgba(255,250,245,0.95); backdrop-filter:blur(12px); border-bottom:1px solid #f3e9dc; }
+    .nav-link { position:relative; color:var(--navy); font-size:0.875rem; font-weight:500; letter-spacing:0.03em; transition:color 0.3s; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--gold); transition:width 0.3s; }
+    .nav-link:hover::after,.nav-link.active::after { width:100%; }
+    .nav-link:hover { color:#c9a96e; }
+    .gold-btn { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-family:'Poppins',sans-serif; font-weight:500; letter-spacing:0.05em; transition:all 0.3s; box-shadow:0 4px 20px rgba(201,169,110,0.35); }
+    .gold-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,169,110,0.45); }
+    .outline-btn { border:1.5px solid var(--gold); color:var(--gold); font-family:'Poppins',sans-serif; font-weight:500; letter-spacing:0.05em; transition:all 0.3s; }
+    .outline-btn:hover { background:var(--gold); color:white; transform:translateY(-2px); }
+    .value-card { background:white; border-radius:1.25rem; box-shadow:0 2px 20px rgba(26,39,68,0.06); transition:all 0.3s; }
+    .value-card:hover { transform:translateY(-5px); box-shadow:0 10px 35px rgba(26,39,68,0.12); }
+    .ornament { display:flex; align-items:center; gap:12px; }
+    .ornament::before,.ornament::after { content:''; flex:1; height:1px; background:linear-gradient(to right,transparent,#c9a96e,transparent); }
+    .stat-card { text-align:center; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--navy); margin:5px 0; transition:all 0.3s; border-radius:2px; }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    footer { background:#111827; }
+    .footer-link { color:#9ca3af; font-size:0.85rem; transition:color 0.3s; }
+    .footer-link:hover { color:var(--gold); }
+    img[loading="lazy"] { opacity:0; transition:opacity 0.5s; }
+    img.loaded { opacity:1; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { animation:fadeUp 0.7s ease forwards; }
+    .about-hero { background:linear-gradient(135deg,#fdf0f5 0%,#fff8f0 50%,#f5efe6 100%); }
+    .timeline-line { position:relative; }
+    .timeline-line::before { content:''; position:absolute; left:20px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,var(--gold),transparent); }
+    .timeline-dot { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#c9a96e,#b8924f); display:flex; align-items:center; justify-content:center; color:white; font-size:0.8rem; font-weight:600; flex-shrink:0; box-shadow:0 4px 12px rgba(201,169,110,0.4); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-2xl">🌸</span>
+      <div><span class="serif font-bold text-xl" style="color:var(--navy)">Noor</span><span class="serif font-bold text-xl" style="color:var(--gold)"> Boutique</span></div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="relative p-2 rounded-full hover:bg-pink-50 transition">
+        <svg class="w-5 h-5" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="absolute top-0 right-0 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center gold-btn">3</span>
+      </button>
+      <button class="hamburger md:hidden p-1" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-5 pb-4 flex flex-col gap-3 border-t" style="border-color:#f3e9dc;background:rgba(255,250,245,0.98)">
+    <a href="index.html" class="nav-link py-2">Home</a>
+    <a href="shop.html" class="nav-link py-2">Shop</a>
+    <a href="about.html" class="nav-link py-2">About</a>
+    <a href="contact.html" class="nav-link py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- ABOUT HERO -->
+<section class="about-hero pt-28 pb-16 px-5">
+  <div class="max-w-3xl mx-auto text-center fade-up">
+    <p class="text-xs tracking-widest uppercase font-semibold mb-3" style="color:var(--gold)">Our Story</p>
+    <h1 class="text-4xl md:text-5xl font-bold mb-5 leading-tight" style="color:var(--navy)">
+      Clothing Little Souls<br/>
+      <span class="italic" style="color:var(--gold)">with Grace & Purpose</span>
+    </h1>
+    <div class="ornament max-w-xs mx-auto mb-6"><span class="text-xl">✿</span></div>
+    <p class="text-gray-500 text-base leading-relaxed font-light max-w-xl mx-auto">
+      At Noor Boutique, we believe that modest fashion for children should be as beautiful as their innocent hearts — comfortable, elegant, and rooted in Islamic values.
+    </p>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="py-20 px-5" style="background:var(--cream)">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <!-- Image -->
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden shadow-2xl" style="height:480px">
+          <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&q=80" alt="Our Story" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        </div>
+        <!-- Floating card -->
+        <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 max-w-xs">
+          <p class="text-xs text-gray-400 mb-1">Founded in</p>
+          <p class="text-2xl font-bold serif" style="color:var(--navy)">2022</p>
+          <p class="text-xs text-gray-500">Dhaka, Bangladesh</p>
+          <div class="mt-2 flex">
+            <span class="text-yellow-400 text-sm">★★★★★</span>
+            <span class="text-xs text-gray-400 ml-1">200+ happy families</span>
+          </div>
+        </div>
+        <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full" style="background:var(--pink); z-index:-1"></div>
+      </div>
+
+      <!-- Text -->
+      <div>
+        <p class="text-xs tracking-widest uppercase font-semibold mb-3" style="color:var(--gold)">How It Began</p>
+        <h2 class="text-4xl font-bold mb-6 leading-snug serif" style="color:var(--navy)">A Mother's Dream,<br/>A Community's Need</h2>
+        <p class="text-gray-600 leading-relaxed mb-5 font-light">
+          Noor Boutique was born from a simple wish — a mother searching for beautiful, modest clothing for her daughter that didn't compromise on either style or Islamic values. Finding very little in the market, she began stitching dreams into fabric.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-5 font-light">
+          Today, we serve hundreds of families across Bangladesh, offering carefully crafted dresses, abayas, and hijabs that allow little girls to celebrate their identity with grace. Every piece is designed with love, tested for comfort, and finished to boutique standard.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-8 font-light">
+          We believe that when a child wears something beautiful and meaningful, it nurtures their confidence, their faith, and their sense of self — from the very first years of their life.
+        </p>
+        <a href="shop.html" class="gold-btn inline-block px-8 py-3.5 rounded-full text-sm">Explore Our Collection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="py-20 px-5" style="background:var(--pink)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">What Drives Us</p>
+      <h2 class="text-4xl font-bold serif" style="color:var(--navy)">Our Core Values</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="value-card p-8 text-center">
+        <div class="text-5xl mb-4">🌸</div>
+        <h3 class="text-xl font-bold serif mb-3" style="color:var(--navy)">Comfort First</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Children move, play, and explore. Our fabrics are soft, breathable, and tested to ensure all-day comfort without irritation — because happy kids wear comfortable clothes.</p>
+      </div>
+      <div class="value-card p-8 text-center">
+        <div class="text-5xl mb-4">✨</div>
+        <h3 class="text-xl font-bold serif mb-3" style="color:var(--navy)">Timeless Elegance</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">We draw inspiration from the beauty of Islamic art and garden motifs — creating garments that feel both timeless and modern, suitable for everyday wear and special occasions.</p>
+      </div>
+      <div class="value-card p-8 text-center">
+        <div class="text-5xl mb-4">🕌</div>
+        <h3 class="text-xl font-bold serif mb-3" style="color:var(--navy)">Islamic Values</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Modesty is not a restriction — it's a gift. We design every piece with the intention of making girls feel proud of their identity, their deen, and their uniqueness.</p>
+      </div>
+      <div class="value-card p-8 text-center">
+        <div class="text-5xl mb-4">💚</div>
+        <h3 class="text-xl font-bold serif mb-3" style="color:var(--navy)">Ethical Production</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">All our clothing is produced locally in Dhaka with fair wages and safe working conditions. We support artisan embroiderers and local fabric craftspeople.</p>
+      </div>
+      <div class="value-card p-8 text-center">
+        <div class="text-5xl mb-4">🎁</div>
+        <h3 class="text-xl font-bold serif mb-3" style="color:var(--navy)">Premium Gifting</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Our packaging is designed to feel like opening a gift — because every child deserves to feel special. Perfect for Eid, birthdays, and Aqiqah celebrations.</p>
+      </div>
+      <div class="value-card p-8 text-center">
+        <div class="text-5xl mb-4">🤝</div>
+        <h3 class="text-xl font-bold serif mb-3" style="color:var(--navy)">Community</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">We're more than a store — we're a community of mothers, sisters, and families who care about raising the next generation with beauty, pride, and faith.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="py-16 px-5" style="background:var(--navy)">
+  <div class="max-w-4xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="stat-card">
+        <p class="text-4xl font-bold serif mb-1" style="color:var(--gold)">200+</p>
+        <p class="text-white/60 text-sm">Happy Families</p>
+      </div>
+      <div class="stat-card">
+        <p class="text-4xl font-bold serif mb-1" style="color:var(--gold)">50+</p>
+        <p class="text-white/60 text-sm">Unique Designs</p>
+      </div>
+      <div class="stat-card">
+        <p class="text-4xl font-bold serif mb-1" style="color:var(--gold)">3+</p>
+        <p class="text-white/60 text-sm">Years of Love</p>
+      </div>
+      <div class="stat-card">
+        <p class="text-4xl font-bold serif mb-1" style="color:var(--gold)">100%</p>
+        <p class="text-white/60 text-sm">Made in BD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR JOURNEY (TIMELINE) -->
+<section class="py-20 px-5" style="background:var(--beige)">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">Our Journey</p>
+      <h2 class="text-4xl font-bold serif" style="color:var(--navy)">From Dream to Reality</h2>
+    </div>
+    <div class="timeline-line space-y-8 pl-2">
+
+      <div class="flex gap-5 items-start">
+        <div class="timeline-dot">22</div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm flex-1">
+          <p class="text-xs font-semibold mb-1" style="color:var(--gold)">2022</p>
+          <h4 class="font-bold mb-1 serif" style="color:var(--navy)">The Beginning</h4>
+          <p class="text-gray-500 text-sm font-light">Noor Boutique launched from a small home studio in Dhaka, stitching the first 10 modest dresses by hand and selling to family and friends.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-5 items-start">
+        <div class="timeline-dot">23</div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm flex-1">
+          <p class="text-xs font-semibold mb-1" style="color:var(--gold)">2023</p>
+          <h4 class="font-bold mb-1 serif" style="color:var(--navy)">First Eid Collection</h4>
+          <p class="text-gray-500 text-sm font-light">Our first proper Eid collection sold out in 3 days. We expanded our range to include abayas and hijabs, partnering with local artisans for embroidery work.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-5 items-start">
+        <div class="timeline-dot">24</div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm flex-1">
+          <p class="text-xs font-semibold mb-1" style="color:var(--gold)">2024</p>
+          <h4 class="font-bold mb-1 serif" style="color:var(--navy)">Going Digital</h4>
+          <p class="text-gray-500 text-sm font-light">Launched our online store, reaching families in Chittagong, Sylhet, Rajshahi and beyond. Received 100+ five-star reviews from delighted parents.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-5 items-start">
+        <div class="timeline-dot">25</div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm flex-1">
+          <p class="text-xs font-semibold mb-1" style="color:var(--gold)">2025 & Beyond</p>
+          <h4 class="font-bold mb-1 serif" style="color:var(--navy)">Women's Collection Coming</h4>
+          <p class="text-gray-500 text-sm font-light">Expanding to serve mothers and sisters too. A complete family modest fashion line is in development — stay tuned for our women's launch!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-5" style="background:linear-gradient(135deg,#1a2744 0%,#243260 100%)">
+  <div class="max-w-2xl mx-auto text-center">
+    <span class="text-4xl">🌸</span>
+    <h2 class="text-3xl font-bold text-white mt-4 mb-3 serif">Dress Her in Noor</h2>
+    <p class="text-white/60 mb-8 font-light">Every little girl deserves to shine in modest beauty. Browse our latest collection and find her perfect look.</p>
+    <a href="shop.html" class="gold-btn inline-block px-10 py-4 rounded-full text-sm">Shop Now</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14 px-5">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🌸</span>
+          <span class="serif font-bold text-xl text-white">Noor <span style="color:var(--gold)">Boutique</span></span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color:#6b7280">Crafting graceful, modest Islamic clothing for your little ones.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#1877f2">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="shop.html" class="footer-link">Shop</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h5>
+        <ul class="space-y-2">
+          <li class="footer-link">📍 Dhaka, Bangladesh</li>
+          <li><a href="#" class="footer-link">💬 WhatsApp Us</a></li>
+          <li><a href="mailto:hello@noorboutique.com" class="footer-link">✉ hello@noorboutique.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style="border-color:#1f2937">
+      <p class="text-xs" style="color:#4b5563">© 2025 Noor Boutique. All rights reserved.</p>
+      <p class="text-xs" style="color:#4b5563">Made with 🌸 for Little Hearts</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    document.getElementById('menuBtn').classList.toggle('open');
+  }
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop — Noor Boutique</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --pink:#f8e8ee; --cream:#fffaf5; --beige:#f3e9dc; --navy:#1a2744; --gold:#c9a96e; --gold-light:#f0d9a8; }
+    * { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; background-color:var(--cream); color:var(--navy); }
+    h1,h2,h3,.serif { font-family:'Playfair Display',serif; }
+    .navbar { background:rgba(255,250,245,0.95); backdrop-filter:blur(12px); border-bottom:1px solid #f3e9dc; }
+    .nav-link { position:relative; color:var(--navy); font-size:0.875rem; font-weight:500; letter-spacing:0.03em; transition:color 0.3s; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--gold); transition:width 0.3s; }
+    .nav-link:hover::after,.nav-link.active::after { width:100%; }
+    .nav-link:hover { color:#c9a96e; }
+    .gold-btn { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-family:'Poppins',sans-serif; font-weight:500; letter-spacing:0.05em; transition:all 0.3s; box-shadow:0 4px 20px rgba(201,169,110,0.35); }
+    .gold-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,169,110,0.45); }
+    .product-card { background:white; border-radius:1.25rem; overflow:hidden; box-shadow:0 2px 20px rgba(26,39,68,0.06); transition:all 0.35s; }
+    .product-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(26,39,68,0.13); }
+    .product-card img { transition:transform 0.5s ease; }
+    .product-card:hover img { transform:scale(1.07); }
+    .badge-new { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-size:0.62rem; font-weight:600; letter-spacing:0.08em; padding:2px 10px; border-radius:20px; }
+    .badge-sale { background:#e85d7a; color:white; font-size:0.62rem; font-weight:600; letter-spacing:0.08em; padding:2px 10px; border-radius:20px; }
+    .filter-btn { border:1.5px solid #e2d5c8; color:#6b7280; font-size:0.8rem; padding:6px 16px; border-radius:50px; cursor:pointer; transition:all 0.25s; font-family:'Poppins',sans-serif; }
+    .filter-btn:hover,.filter-btn.active { border-color:var(--gold); color:var(--gold); background:rgba(201,169,110,0.08); }
+    .size-btn { border:1.5px solid #e2d5c8; color:#6b7280; font-size:0.75rem; padding:4px 14px; border-radius:8px; cursor:pointer; transition:all 0.25s; font-family:'Poppins',sans-serif; }
+    .size-btn:hover,.size-btn.active { border-color:var(--navy); color:var(--navy); background:rgba(26,39,68,0.05); }
+    .hero-shop { background:linear-gradient(135deg,#f8e8ee 0%,#f3e9dc 100%); }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--navy); margin:5px 0; transition:all 0.3s; border-radius:2px; }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    footer { background:#111827; }
+    .footer-link { color:#9ca3af; font-size:0.85rem; transition:color 0.3s; }
+    .footer-link:hover { color:var(--gold); }
+    img[loading="lazy"] { opacity:0; transition:opacity 0.5s; }
+    img.loaded { opacity:1; }
+    .wishlist-btn { position:absolute; top:10px; right:10px; background:white; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.12); transition:all 0.3s; opacity:0; }
+    .product-card:hover .wishlist-btn { opacity:1; }
+    .wishlist-btn:hover { background:var(--pink); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-2xl">🌸</span>
+      <div><span class="serif font-bold text-xl" style="color:var(--navy)">Noor</span><span class="serif font-bold text-xl" style="color:var(--gold)"> Boutique</span></div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link active">Shop</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="relative p-2 rounded-full hover:bg-pink-50 transition">
+        <svg class="w-5 h-5" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="absolute top-0 right-0 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center gold-btn">3</span>
+      </button>
+      <button class="hamburger md:hidden p-1" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-5 pb-4 flex flex-col gap-3 border-t" style="border-color:#f3e9dc;background:rgba(255,250,245,0.98)">
+    <a href="index.html" class="nav-link py-2">Home</a>
+    <a href="shop.html" class="nav-link py-2">Shop</a>
+    <a href="about.html" class="nav-link py-2">About</a>
+    <a href="contact.html" class="nav-link py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- SHOP HERO -->
+<section class="hero-shop pt-28 pb-14 px-5">
+  <div class="max-w-7xl mx-auto text-center">
+    <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">Our Full Range</p>
+    <h1 class="text-4xl md:text-5xl font-bold mb-3" style="color:var(--navy)">Shop Our Collection</h1>
+    <p class="text-gray-500 text-sm max-w-md mx-auto">Discover modest, elegant clothing crafted with love for your little ones.</p>
+  </div>
+</section>
+
+<!-- MAIN SHOP LAYOUT -->
+<section class="py-10 px-5 max-w-7xl mx-auto">
+  <div class="flex flex-col md:flex-row gap-8">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="md:w-60 shrink-0">
+      <div class="bg-white rounded-2xl shadow-sm p-6 sticky top-20">
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:var(--navy)">Filter By</h3>
+
+        <!-- Category Filter -->
+        <div class="mb-6">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-400">Category</p>
+          <div class="flex flex-col gap-2">
+            <button class="filter-btn active text-left" onclick="filterProducts('all', this)">All Products</button>
+            <button class="filter-btn text-left" onclick="filterProducts('dress', this)">Girls Dresses</button>
+            <button class="filter-btn text-left" onclick="filterProducts('abaya', this)">Borka / Abaya</button>
+            <button class="filter-btn text-left" onclick="filterProducts('hijab', this)">Hijab Collection</button>
+          </div>
+        </div>
+
+        <!-- Size Filter -->
+        <div class="mb-6">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-400">Size (Kids)</p>
+          <div class="flex flex-wrap gap-2">
+            <button class="size-btn" onclick="toggleSize(this)">2-3Y</button>
+            <button class="size-btn" onclick="toggleSize(this)">4-5Y</button>
+            <button class="size-btn" onclick="toggleSize(this)">6-7Y</button>
+            <button class="size-btn" onclick="toggleSize(this)">8-10Y</button>
+            <button class="size-btn" onclick="toggleSize(this)">11-12Y</button>
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-400">Price Range</p>
+          <input type="range" min="500" max="3000" value="3000" class="w-full accent-yellow-600" oninput="document.getElementById('priceVal').innerText='৳ '+this.value"/>
+          <p class="text-xs mt-2 text-gray-500">Up to <span id="priceVal" class="font-semibold" style="color:var(--gold)">৳ 3000</span></p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS GRID -->
+    <div class="flex-1">
+      <!-- Sorting bar -->
+      <div class="flex items-center justify-between mb-6">
+        <p class="text-sm text-gray-500"><span id="productCount">12</span> products found</p>
+        <select class="text-sm border rounded-xl px-3 py-2 text-gray-600 focus:outline-none" style="border-color:#e2d5c8;font-family:'Poppins',sans-serif">
+          <option>Sort: Newest First</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Best Selling</option>
+        </select>
+      </div>
+
+      <!-- Products -->
+      <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Product 1 -->
+        <div class="product-card" data-cat="dress">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Floral Maxi Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3 flex gap-1"><span class="badge-new">NEW</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Floral Maxi Dress</h4>
+            <p class="text-xs text-gray-400 mb-1">Cotton Blend</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 1,450</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-cat="abaya">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1543955118-4e6fbe3d9d48?w=400&q=80" alt="Navy Abaya Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3 flex gap-1"><span class="badge-new">NEW</span><span class="badge-sale">SALE</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Navy Abaya Set</h4>
+            <p class="text-xs text-gray-400 mb-1">Premium Nida</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">11-12Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold" style="color:var(--gold)">৳ 1,890</span>
+                <span class="text-xs text-gray-400 line-through ml-1">৳ 2,200</span>
+              </div>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-cat="hijab">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1617751192007-40ef2a03d17b?w=400&q=80" alt="Pastel Hijab Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Pastel Hijab Set (3pcs)</h4>
+            <p class="text-xs text-gray-400 mb-1">Soft Chiffon</p>
+            <p class="text-xs text-gray-400 mb-3">One size fits 4–12Y</p>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 850</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-cat="dress">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1513094735237-8f2714d57c13?w=400&q=80" alt="Rose Garden Gown" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Rose Garden Gown</h4>
+            <p class="text-xs text-gray-400 mb-1">Embroidered Tulle</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 2,100</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card" data-cat="abaya">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1596463059283-da257325bab8?w=400&q=80" alt="Pink Pearl Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Pink Pearl Abaya</h4>
+            <p class="text-xs text-gray-400 mb-1">Crepe Fabric</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 1,750</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card" data-cat="hijab">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1558369178-6556d97855d0?w=400&q=80" alt="Satin Hijab Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3"><span class="badge-sale">SALE</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Satin Shimmer Hijab</h4>
+            <p class="text-xs text-gray-400 mb-1">Satin • Colors: 6</p>
+            <p class="text-xs text-gray-400 mb-3">One size fits 3–12Y</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold" style="color:var(--gold)">৳ 650</span>
+                <span class="text-xs text-gray-400 line-through ml-1">৳ 900</span>
+              </div>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card" data-cat="dress">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&q=80" alt="Garden Party Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Garden Party Dress</h4>
+            <p class="text-xs text-gray-400 mb-1">Cotton Lawn</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">2-3Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 1,200</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card" data-cat="abaya">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1602722004527-0b6af8ae1f13?w=400&q=80" alt="Classic Black Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Classic Embroidered Abaya</h4>
+            <p class="text-xs text-gray-400 mb-1">Premium Nida</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">11-12Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 2,350</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-card" data-cat="hijab">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Lace Trim Hijab" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Lace Trim Hijab</h4>
+            <p class="text-xs text-gray-400 mb-1">Jersey Cotton • Colors: 4</p>
+            <p class="text-xs text-gray-400 mb-3">One size fits 4–12Y</p>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 750</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-card" data-cat="dress">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1513094735237-8f2714d57c13?w=400&q=80" alt="Eid Special Gown" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3"><span class="badge-sale">SALE</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Eid Special Gown</h4>
+            <p class="text-xs text-gray-400 mb-1">Silk Blend</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold" style="color:var(--gold)">৳ 1,980</span>
+                <span class="text-xs text-gray-400 line-through ml-1">৳ 2,500</span>
+              </div>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card" data-cat="abaya">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1596463059283-da257325bab8?w=400&q=80" alt="Lavender Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Lavender Lace Abaya</h4>
+            <p class="text-xs text-gray-400 mb-1">Nida + Lace Panel</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 1,950</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card" data-cat="dress">
+          <div class="overflow-hidden relative" style="height:260px">
+            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Blush Tulle Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+            <button class="wishlist-btn">❤️</button>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Blush Tulle Dress</h4>
+            <p class="text-xs text-gray-400 mb-1">Tulle Overlay</p>
+            <div class="flex gap-1 mb-3">
+              <span class="size-btn text-xs py-0.5 px-2">2-3Y</span>
+              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold" style="color:var(--gold)">৳ 1,350</span>
+              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /grid -->
+
+      <!-- Load More -->
+      <div class="text-center mt-10">
+        <button class="outline-btn px-10 py-3.5 rounded-full text-sm" style="border:1.5px solid var(--gold);color:var(--gold);font-family:'Poppins',sans-serif;font-weight:500;letter-spacing:0.05em;transition:all 0.3s;">Load More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14 px-5 mt-10">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🌸</span>
+          <span class="serif font-bold text-xl text-white">Noor <span style="color:var(--gold)">Boutique</span></span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color:#6b7280">Crafting graceful, modest Islamic clothing for your little ones.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#1877f2">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="shop.html" class="footer-link">Shop</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h5>
+        <ul class="space-y-2">
+          <li class="footer-link">📍 Dhaka, Bangladesh</li>
+          <li><a href="#" class="footer-link">💬 WhatsApp Us</a></li>
+          <li><a href="mailto:hello@noorboutique.com" class="footer-link">✉ hello@noorboutique.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style="border-color:#1f2937">
+      <p class="text-xs" style="color:#4b5563">© 2025 Noor Boutique. All rights reserved.</p>
+      <p class="text-xs" style="color:#4b5563">Made with 🌸 for Little Hearts</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    document.getElementById('menuBtn').classList.toggle('open');
+  }
+
+  function filterProducts(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cards = document.querySelectorAll('#productsGrid .product-card');
+    let count = 0;
+    cards.forEach(card => {
+      if(category === 'all' || card.dataset.cat === category) {
+        card.style.display = '';
+        count++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('productCount').textContent = count;
+  }
+
+  function toggleSize(btn) {
+    btn.classList.toggle('active');
+  }
+
+  // Lazy load
+  const imgs = document.querySelectorAll('img[loading="lazy"]');
+  const io = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target.src = e.target.src; io.unobserve(e.target); } }));
+  imgs.forEach(img => io.observe(img));
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)';
+  });
+</script>
+</body>
+</html>

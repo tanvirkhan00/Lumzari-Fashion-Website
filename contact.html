@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Noor Boutique</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --pink:#f8e8ee; --cream:#fffaf5; --beige:#f3e9dc; --navy:#1a2744; --gold:#c9a96e; --gold-light:#f0d9a8; }
+    * { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; background-color:var(--cream); color:var(--navy); }
+    h1,h2,h3,.serif { font-family:'Playfair Display',serif; }
+    .navbar { background:rgba(255,250,245,0.95); backdrop-filter:blur(12px); border-bottom:1px solid #f3e9dc; }
+    .nav-link { position:relative; color:var(--navy); font-size:0.875rem; font-weight:500; letter-spacing:0.03em; transition:color 0.3s; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--gold); transition:width 0.3s; }
+    .nav-link:hover::after,.nav-link.active::after { width:100%; }
+    .nav-link:hover { color:#c9a96e; }
+    .gold-btn { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-family:'Poppins',sans-serif; font-weight:500; letter-spacing:0.05em; transition:all 0.3s; box-shadow:0 4px 20px rgba(201,169,110,0.35); }
+    .gold-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,169,110,0.45); }
+    .form-input { width:100%; border:1.5px solid #e2d5c8; border-radius:0.75rem; padding:12px 16px; font-family:'Poppins',sans-serif; font-size:0.875rem; color:var(--navy); background:white; transition:border-color 0.3s, box-shadow 0.3s; outline:none; }
+    .form-input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,169,110,0.15); }
+    .form-input::placeholder { color:#b0a090; }
+    .contact-card { background:white; border-radius:1.25rem; box-shadow:0 2px 20px rgba(26,39,68,0.07); transition:all 0.3s; }
+    .contact-card:hover { transform:translateY(-4px); box-shadow:0 10px 35px rgba(26,39,68,0.12); }
+    .icon-circle { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+    .ornament { display:flex; align-items:center; gap:12px; }
+    .ornament::before,.ornament::after { content:''; flex:1; height:1px; background:linear-gradient(to right,transparent,#c9a96e,transparent); }
+    .wa-btn { background:linear-gradient(135deg,#25d366,#1db954); color:white; font-family:'Poppins',sans-serif; font-weight:500; transition:all 0.3s; box-shadow:0 4px 20px rgba(37,211,102,0.35); }
+    .wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,211,102,0.45); }
+    .map-placeholder { background:linear-gradient(135deg,#e8f4e8,#dff2df); border:2px dashed #a8d8a8; border-radius:1.25rem; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--navy); margin:5px 0; transition:all 0.3s; border-radius:2px; }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    footer { background:#111827; }
+    .footer-link { color:#9ca3af; font-size:0.85rem; transition:color 0.3s; }
+    .footer-link:hover { color:var(--gold); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { animation:fadeUp 0.7s ease forwards; }
+    .success-toast { position:fixed; bottom:24px; right:24px; background:var(--navy); color:white; border-radius:12px; padding:12px 20px; font-size:0.85rem; box-shadow:0 8px 30px rgba(0,0,0,0.2); transform:translateY(100px); opacity:0; transition:all 0.4s; z-index:100; }
+    .success-toast.show { transform:translateY(0); opacity:1; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-2xl">🌸</span>
+      <div><span class="serif font-bold text-xl" style="color:var(--navy)">Noor</span><span class="serif font-bold text-xl" style="color:var(--gold)"> Boutique</span></div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="relative p-2 rounded-full hover:bg-pink-50 transition">
+        <svg class="w-5 h-5" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="absolute top-0 right-0 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center gold-btn">3</span>
+      </button>
+      <button class="hamburger md:hidden p-1" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-5 pb-4 flex flex-col gap-3 border-t" style="border-color:#f3e9dc;background:rgba(255,250,245,0.98)">
+    <a href="index.html" class="nav-link py-2">Home</a>
+    <a href="shop.html" class="nav-link py-2">Shop</a>
+    <a href="about.html" class="nav-link py-2">About</a>
+    <a href="contact.html" class="nav-link py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- CONTACT HERO -->
+<section class="pt-28 pb-14 px-5" style="background:linear-gradient(135deg,#f8e8ee,#fffaf5,#f3e9dc)">
+  <div class="max-w-3xl mx-auto text-center fade-up">
+    <p class="text-xs tracking-widest uppercase font-semibold mb-3" style="color:var(--gold)">Get in Touch</p>
+    <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color:var(--navy)">
+      We'd Love to<br/>
+      <span class="italic" style="color:var(--gold)">Hear from You</span>
+    </h1>
+    <p class="text-gray-500 font-light max-w-md mx-auto">Have a question about sizing, custom orders, or bulk purchases? Our team is always here to help.</p>
+  </div>
+</section>
+
+<!-- CONTACT CARDS -->
+<section class="py-12 px-5" style="background:var(--cream)">
+  <div class="max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-5">
+
+      <div class="contact-card p-6 text-center">
+        <div class="icon-circle mx-auto mb-4" style="background:var(--pink)">
+          <svg class="w-6 h-6" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h4 class="font-semibold mb-1" style="color:var(--navy)">Our Location</h4>
+        <p class="text-sm text-gray-500 font-light">Mirpur, Dhaka<br/>Bangladesh</p>
+      </div>
+
+      <div class="contact-card p-6 text-center">
+        <div class="icon-circle mx-auto mb-4" style="background:#e8f9ee">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style="color:#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <h4 class="font-semibold mb-1" style="color:var(--navy)">WhatsApp</h4>
+        <p class="text-sm text-gray-500 font-light mb-3">Chat with us directly</p>
+        <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="wa-btn text-xs px-5 py-2 rounded-full inline-block">Message Us</a>
+      </div>
+
+      <div class="contact-card p-6 text-center">
+        <div class="icon-circle mx-auto mb-4" style="background:var(--beige)">
+          <svg class="w-6 h-6" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <h4 class="font-semibold mb-1" style="color:var(--navy)">Email Us</h4>
+        <p class="text-sm text-gray-500 font-light mb-1">hello@noorboutique.com</p>
+        <p class="text-xs text-gray-400">Reply within 24 hours</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM + MAP -->
+<section class="py-16 px-5" style="background:var(--pink)">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12">
+
+      <!-- FORM -->
+      <div>
+        <p class="text-xs tracking-widest uppercase font-semibold mb-3" style="color:var(--gold)">Send a Message</p>
+        <h2 class="text-3xl font-bold serif mb-6" style="color:var(--navy)">We're Here to Help</h2>
+
+        <div class="bg-white rounded-2xl shadow-sm p-8">
+          <div class="space-y-5">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Full Name</label>
+                <input type="text" class="form-input" placeholder="Your name" id="nameInput"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Email Address</label>
+                <input type="email" class="form-input" placeholder="Your email" id="emailInput"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Subject</label>
+              <select class="form-input" id="subjectInput">
+                <option value="">Select a topic...</option>
+                <option>Order Inquiry</option>
+                <option>Custom Order</option>
+                <option>Size & Fit</option>
+                <option>Bulk / Wholesale</option>
+                <option>Feedback</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Message</label>
+              <textarea class="form-input" rows="5" placeholder="Tell us how we can help..." id="messageInput"></textarea>
+            </div>
+            <button onclick="submitForm()" class="gold-btn w-full py-4 rounded-xl text-sm">
+              Send Message ✉
+            </button>
+          </div>
+
+          <!-- Response Time -->
+          <p class="text-center text-xs text-gray-400 mt-4">🕐 We typically respond within 24 hours (Sun–Thu)</p>
+        </div>
+      </div>
+
+      <!-- INFO + MAP -->
+      <div class="flex flex-col gap-6">
+
+        <!-- WhatsApp CTA -->
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:#e8f9ee">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style="color:#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold" style="color:var(--navy)">Chat on WhatsApp</h4>
+              <p class="text-xs text-gray-400">Fastest way to reach us</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mb-4 font-light">For quick order inquiries, size questions, or custom requests — WhatsApp is the fastest way to get a response from our team.</p>
+          <a href="https://wa.me/8801XXXXXXXXX?text=Hello%20Noor%20Boutique!%20I%20have%20a%20question%20about..." target="_blank" class="wa-btn flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-sm w-full">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Open WhatsApp Chat
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <h4 class="font-semibold mb-4" style="color:var(--navy)">Follow Us on Social Media</h4>
+          <div class="flex flex-col gap-3">
+            <a href="#" class="flex items-center gap-3 p-3 rounded-xl transition hover:bg-gray-50">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:#1877f2">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium" style="color:var(--navy)">Facebook</p>
+                <p class="text-xs text-gray-400">@NoorboutiqueOfficial</p>
+              </div>
+              <svg class="w-4 h-4 text-gray-300 ml-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#" class="flex items-center gap-3 p-3 rounded-xl transition hover:bg-gray-50">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium" style="color:var(--navy)">Instagram</p>
+                <p class="text-xs text-gray-400">@noor.boutique.bd</p>
+              </div>
+              <svg class="w-4 h-4 text-gray-300 ml-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="map-placeholder" style="height:200px">
+          <svg class="w-10 h-10 mb-2" style="color:#68a868" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <p class="font-semibold text-sm" style="color:#3a7a3a">Mirpur, Dhaka</p>
+          <p class="text-xs text-gray-500 mt-1">Bangladesh</p>
+          <a href="https://maps.google.com/?q=Mirpur,Dhaka" target="_blank" class="mt-3 text-xs font-medium px-4 py-1.5 rounded-full" style="background:#25a025;color:white">Open in Maps</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 px-5" style="background:var(--cream)">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-10">
+      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">FAQs</p>
+      <h2 class="text-3xl font-bold serif" style="color:var(--navy)">Common Questions</h2>
+    </div>
+    <div class="space-y-4" id="faqContainer">
+
+      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="font-medium text-sm" style="color:var(--navy)">Do you offer custom sizing for kids?</span>
+          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-4">
+          <p class="text-sm text-gray-500 font-light">Yes! We offer custom sizing for most of our dresses and abayas. Contact us on WhatsApp with your child's measurements and we'll create something perfect for them.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="font-medium text-sm" style="color:var(--navy)">How long does delivery take?</span>
+          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-4">
+          <p class="text-sm text-gray-500 font-light">Standard delivery within Dhaka takes 2–3 days. Outside Dhaka (nationwide) typically 4–7 working days via courier service.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="font-medium text-sm" style="color:var(--navy)">Do you accept returns or exchanges?</span>
+          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-4">
+          <p class="text-sm text-gray-500 font-light">We accept exchanges within 7 days of delivery for sizing issues. Items must be unworn and in original condition. Please contact us via WhatsApp to initiate an exchange.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="font-medium text-sm" style="color:var(--navy)">Can I place bulk/wholesale orders for Eid?</span>
+          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body hidden px-6 pb-4">
+          <p class="text-sm text-gray-500 font-light">Absolutely! We welcome bulk orders for madrasa uniforms, Eid gifts, and boutique resellers. Contact us at least 3 weeks in advance for bulk pricing and availability.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14 px-5">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🌸</span>
+          <span class="serif font-bold text-xl text-white">Noor <span style="color:var(--gold)">Boutique</span></span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color:#6b7280">Crafting graceful, modest Islamic clothing for your little ones.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#1877f2">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://wa.me/8801XXXXXXXXX" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#25d366">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="shop.html" class="footer-link">Shop</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h5>
+        <ul class="space-y-2">
+          <li class="footer-link">📍 Dhaka, Bangladesh</li>
+          <li><a href="https://wa.me/8801XXXXXXXXX" class="footer-link">💬 WhatsApp Us</a></li>
+          <li><a href="mailto:hello@noorboutique.com" class="footer-link">✉ hello@noorboutique.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style="border-color:#1f2937">
+      <p class="text-xs" style="color:#4b5563">© 2025 Noor Boutique. All rights reserved.</p>
+      <p class="text-xs" style="color:#4b5563">Made with 🌸 for Little Hearts</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="success-toast" id="toast">✅ Message sent! We'll reply within 24 hours.</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    document.getElementById('menuBtn').classList.toggle('open');
+  }
+
+  function toggleFaq(btn) {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    body.classList.toggle('hidden');
+    icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+  }
+
+  function submitForm() {
+    const name = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const message = document.getElementById('messageInput').value.trim();
+    if(!name || !email || !message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+    document.getElementById('nameInput').value = '';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('subjectInput').value = '';
+    document.getElementById('messageInput').value = '';
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)';
+  });
+</script>
+</body>
+</html>

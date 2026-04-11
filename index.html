@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Noor Boutique — Graceful Modesty for Little Hearts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink: #f8e8ee;
+      --cream: #fffaf5;
+      --beige: #f3e9dc;
+      --navy: #1a2744;
+      --gold: #c9a96e;
+      --gold-light: #f0d9a8;
+    }
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--cream); color: var(--navy); }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+    /* Navbar */
+    .navbar { background: rgba(255,250,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #f3e9dc; }
+    .nav-link { position: relative; color: var(--navy); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.03em; transition: color 0.3s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width 0.3s; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover { color: #c9a96e; }
+
+    /* Hero */
+    .hero-bg {
+      background: linear-gradient(135deg, #fdf0f5 0%, #fff8f0 40%, #f5efe6 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.06'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .floral-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f8d7e3 0%, transparent 70%);
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #c9a96e, #b8924f);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(201,169,110,0.35);
+    }
+    .gold-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,169,110,0.45); }
+    .outline-btn {
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+    }
+    .outline-btn:hover { background: var(--gold); color: white; transform: translateY(-2px); }
+
+    /* Product Cards */
+    .product-card { background: white; border-radius: 1.25rem; overflow: hidden; box-shadow: 0 2px 20px rgba(26,39,68,0.06); transition: all 0.35s; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,39,68,0.13); }
+    .product-card img { transition: transform 0.5s ease; }
+    .product-card:hover img { transform: scale(1.06); }
+    .badge-new { background: linear-gradient(135deg, #c9a96e, #b8924f); color: white; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; padding: 2px 10px; border-radius: 20px; }
+    .badge-sale { background: #e85d7a; color: white; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; padding: 2px 10px; border-radius: 20px; }
+
+    /* Category Cards */
+    .cat-card { border-radius: 1.25rem; overflow: hidden; position: relative; cursor: pointer; }
+    .cat-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,39,68,0.55) 0%, transparent 60%); transition: opacity 0.3s; }
+    .cat-card:hover::after { opacity: 0.75; }
+    .cat-card img { transition: transform 0.5s; }
+    .cat-card:hover img { transform: scale(1.07); }
+    .cat-label { position: absolute; bottom: 0; left: 0; right: 0; z-index: 10; }
+
+    /* Testimonials */
+    .testi-card { background: white; border-radius: 1.25rem; box-shadow: 0 2px 20px rgba(26,39,68,0.07); border-left: 3px solid var(--gold); }
+    .star { color: #f0c040; }
+
+    /* Flower decoration */
+    .petal { display: inline-block; }
+
+    /* Newsletter */
+    .newsletter-section { background: linear-gradient(135deg, #1a2744 0%, #243260 100%); }
+    .newsletter-input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+    .newsletter-input:focus { outline: none; border-color: var(--gold); }
+
+    /* Footer */
+    footer { background: #111827; }
+    .footer-link { color: #9ca3af; font-size: 0.85rem; transition: color 0.3s; }
+    .footer-link:hover { color: var(--gold); }
+
+    /* Hamburger */
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Fade in animation */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.7s ease forwards; }
+    .delay-1 { animation-delay: 0.15s; opacity: 0; }
+    .delay-2 { animation-delay: 0.3s; opacity: 0; }
+    .delay-3 { animation-delay: 0.45s; opacity: 0; }
+
+    /* Divider ornament */
+    .ornament { display: flex; align-items: center; gap: 12px; }
+    .ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, #c9a96e, transparent); }
+
+    /* Coming soon banner */
+    .coming-soon-banner {
+      background: linear-gradient(135deg, #f8e8ee, #f3e9dc);
+      border: 1.5px dashed #c9a96e;
+      border-radius: 1.25rem;
+    }
+
+    img[loading="lazy"] { opacity: 0; transition: opacity 0.5s; }
+    img.loaded { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-2xl">🌸</span>
+      <div>
+        <span class="serif font-bold text-xl" style="color:var(--navy)">Noor</span>
+        <span class="serif font-bold text-xl" style="color:var(--gold)"> Boutique</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+    <!-- Cart + Hamburger -->
+    <div class="flex items-center gap-4">
+      <button class="relative p-2 rounded-full hover:bg-pink-50 transition">
+        <svg class="w-5 h-5" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="absolute top-0 right-0 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center gold-btn">3</span>
+      </button>
+      <button class="hamburger md:hidden p-1" id="menuBtn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden px-5 pb-4 flex flex-col gap-3 border-t" style="border-color:#f3e9dc; background:rgba(255,250,245,0.98)">
+    <a href="index.html" class="nav-link py-2">Home</a>
+    <a href="shop.html" class="nav-link py-2">Shop</a>
+    <a href="about.html" class="nav-link py-2">About</a>
+    <a href="contact.html" class="nav-link py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero-bg min-h-screen flex items-center pt-16">
+  <div class="floral-circle w-96 h-96 -top-20 -right-20 opacity-60"></div>
+  <div class="floral-circle w-64 h-64 bottom-10 left-5 opacity-40"></div>
+
+  <div class="max-w-7xl mx-auto px-5 py-20 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Text Side -->
+      <div class="fade-up">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 tracking-widest uppercase" style="background:#f0d9a8; color:#8a6320">
+          🌸 New Collection 2025
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-5" style="color:var(--navy)">
+          Graceful<br/>
+          <span class="italic" style="color:var(--gold)">Modesty</span><br/>
+          for Little Hearts
+        </h1>
+        <p class="text-gray-500 text-base leading-relaxed mb-8 max-w-md font-light">
+          Beautifully crafted Islamic clothing for your precious daughters — where elegance meets comfort and values are worn with pride.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="shop.html" class="gold-btn px-8 py-3.5 rounded-full text-sm">Shop Collection</a>
+          <a href="about.html" class="outline-btn px-8 py-3.5 rounded-full text-sm">Our Story</a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-6 mt-10 pt-8" style="border-top: 1px solid #e8d5c4">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">✨</span>
+            <span class="text-xs text-gray-500 font-medium">Premium Quality</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🧒</span>
+            <span class="text-xs text-gray-500 font-medium">Child-Safe Fabrics</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🚚</span>
+            <span class="text-xs text-gray-500 font-medium">Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Side -->
+      <div class="fade-up delay-2 relative">
+        <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl" style="max-width:420px; margin:0 auto;">
+          <img
+            src="https://images.unsplash.com/photo-1602722004527-0b6af8ae1f13?w=600&q=80"
+            alt="Little girl in modest dress"
+            class="w-full object-cover"
+            style="height:520px; object-position:top"
+            loading="lazy"
+            onload="this.classList.add('loaded')"
+          />
+          <!-- Floating badge -->
+          <div class="absolute top-5 left-5 bg-white rounded-2xl shadow-lg px-4 py-2">
+            <p class="text-xs text-gray-400">New Arrival</p>
+            <p class="text-sm font-semibold" style="color:var(--navy)">Floral Abaya</p>
+            <p class="text-xs font-bold" style="color:var(--gold)">৳ 1,850</p>
+          </div>
+        </div>
+        <!-- Decorative blob behind image -->
+        <div class="absolute -z-0 rounded-full -bottom-8 -right-8 w-72 h-72" style="background:var(--beige)"></div>
+        <div class="absolute -z-0 rounded-full -top-8 -left-8 w-48 h-48" style="background:var(--pink)"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="py-20 px-5" style="background:var(--cream)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">Browse by Category</p>
+      <h2 class="text-4xl font-bold mb-3" style="color:var(--navy)">Our Collections</h2>
+      <div class="ornament max-w-xs mx-auto"><span class="text-xl">🌷</span></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Category 1 -->
+      <a href="shop.html" class="cat-card block" style="height:340px">
+        <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600&q=80" alt="Girls Dresses" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        <div class="cat-label p-6">
+          <h3 class="text-white text-xl font-bold serif">Girls Dresses</h3>
+          <p class="text-white/70 text-sm">Elegant long gowns & frocks</p>
+        </div>
+      </a>
+      <!-- Category 2 -->
+      <a href="shop.html" class="cat-card block" style="height:340px">
+        <img src="https://images.unsplash.com/photo-1596463059283-da257325bab8?w=600&q=80" alt="Borka / Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        <div class="cat-label p-6">
+          <h3 class="text-white text-xl font-bold serif">Borka / Abaya</h3>
+          <p class="text-white/70 text-sm">Modest Islamic outerwear</p>
+        </div>
+      </a>
+      <!-- Category 3 -->
+      <a href="shop.html" class="cat-card block" style="height:340px">
+        <img src="https://images.unsplash.com/photo-1558369178-6556d97855d0?w=600&q=80" alt="Hijab Collection" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        <div class="cat-label p-6">
+          <h3 class="text-white text-xl font-bold serif">Hijab Collection</h3>
+          <p class="text-white/70 text-sm">Soft, colorful hijabs for girls</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED PRODUCTS ===== -->
+<section class="py-20 px-5" style="background:var(--pink)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">Handpicked for You</p>
+      <h2 class="text-4xl font-bold mb-3" style="color:var(--navy)">Featured Products</h2>
+      <div class="ornament max-w-xs mx-auto"><span class="text-xl">✿</span></div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Product Card 1 -->
+      <div class="product-card">
+        <div class="overflow-hidden" style="height:260px">
+          <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Floral Maxi Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        </div>
+        <div class="p-4">
+          <div class="flex gap-2 mb-2"><span class="badge-new">NEW</span></div>
+          <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Floral Maxi Dress</h4>
+          <p class="text-xs text-gray-400 mb-3">Ages 3–10 • Cotton Blend</p>
+          <div class="flex items-center justify-between">
+            <span class="font-bold" style="color:var(--gold)">৳ 1,450</span>
+            <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="product-card">
+        <div class="overflow-hidden" style="height:260px">
+          <img src="https://images.unsplash.com/photo-1543955118-4e6fbe3d9d48?w=400&q=80" alt="Navy Abaya Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        </div>
+        <div class="p-4">
+          <div class="flex gap-2 mb-2"><span class="badge-new">NEW</span><span class="badge-sale">SALE</span></div>
+          <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Navy Abaya Set</h4>
+          <p class="text-xs text-gray-400 mb-3">Ages 5–12 • Premium Nida</p>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="font-bold" style="color:var(--gold)">৳ 1,890</span>
+              <span class="text-xs text-gray-400 line-through ml-1">৳ 2,200</span>
+            </div>
+            <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="product-card">
+        <div class="overflow-hidden" style="height:260px">
+          <img src="https://images.unsplash.com/photo-1617751192007-40ef2a03d17b?w=400&q=80" alt="Pastel Hijab Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        </div>
+        <div class="p-4">
+          <div class="flex gap-2 mb-2"></div>
+          <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Pastel Hijab Set (3pcs)</h4>
+          <p class="text-xs text-gray-400 mb-3">Soft Chiffon • All Sizes</p>
+          <div class="flex items-center justify-between">
+            <span class="font-bold" style="color:var(--gold)">৳ 850</span>
+            <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 4 -->
+      <div class="product-card">
+        <div class="overflow-hidden" style="height:260px">
+          <img src="https://images.unsplash.com/photo-1513094735237-8f2714d57c13?w=400&q=80" alt="Rose Garden Gown" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
+        </div>
+        <div class="p-4">
+          <div class="flex gap-2 mb-2"><span class="badge-new">NEW</span></div>
+          <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Rose Garden Gown</h4>
+          <p class="text-xs text-gray-400 mb-3">Ages 4–10 • Embroidered</p>
+          <div class="flex items-center justify-between">
+            <span class="font-bold" style="color:var(--gold)">৳ 2,100</span>
+            <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center mt-10">
+      <a href="shop.html" class="outline-btn inline-block px-10 py-3.5 rounded-full text-sm">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMING SOON: WOMEN'S ===== -->
+<section class="py-16 px-5" style="background:var(--cream)">
+  <div class="max-w-3xl mx-auto">
+    <div class="coming-soon-banner p-10 text-center">
+      <span class="text-3xl">👗</span>
+      <h2 class="text-3xl font-bold mt-3 mb-2 serif" style="color:var(--navy)">Women's Collection</h2>
+      <p class="text-gray-500 mb-5">Elegant modest fashion for mothers & sisters — arriving very soon.</p>
+      <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full text-sm font-semibold" style="background:#1a2744; color:var(--gold-light)">
+        🕐 Coming Soon — Stay Tuned
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="py-20 px-5" style="background:var(--beige)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">What Parents Say</p>
+      <h2 class="text-4xl font-bold" style="color:var(--navy)">Loved by Families</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="testi-card p-6">
+        <div class="flex mb-3">
+          <span class="star">★★★★★</span>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">"My daughter absolutely loves her abaya from Noor Boutique! The fabric is so soft and comfortable — she wore it all day without any fuss. Will definitely order again!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:var(--navy)">F</div>
+          <div>
+            <p class="text-sm font-semibold" style="color:var(--navy)">Fatima R.</p>
+            <p class="text-xs text-gray-400">Dhaka</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card p-6">
+        <div class="flex mb-3">
+          <span class="star">★★★★★</span>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">"Beautiful quality and arrived so quickly! The floral maxi dress was exactly as shown. My girls looked stunning at Eid. This is now our go-to store for kids Islamic fashion."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:#b8924f">S</div>
+          <div>
+            <p class="text-sm font-semibold" style="color:var(--navy)">Sumaiya K.</p>
+            <p class="text-xs text-gray-400">Chittagong</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card p-6">
+        <div class="flex mb-3">
+          <span class="star">★★★★☆</span>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">"Lovely modest dresses that are both beautiful and practical for daily wear. The hijab set is great value. Packaging was premium too — felt like a real boutique experience!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:#e85d7a">N</div>
+          <div>
+            <p class="text-sm font-semibold" style="color:var(--navy)">Nadia A.</p>
+            <p class="text-xs text-gray-400">Sylhet</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter-section py-20 px-5">
+  <div class="max-w-2xl mx-auto text-center">
+    <span class="text-4xl">🌸</span>
+    <h2 class="text-3xl font-bold text-white mt-4 mb-3 serif">Join Our Little Family</h2>
+    <p class="text-white/60 mb-8 font-light">Get first access to new collections, exclusive offers, and Eid specials delivered to your inbox.</p>
+    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input type="email" placeholder="Your email address" class="newsletter-input flex-1 px-5 py-3.5 rounded-full text-sm"/>
+      <button class="gold-btn px-7 py-3.5 rounded-full text-sm whitespace-nowrap">Subscribe</button>
+    </div>
+    <p class="text-white/30 text-xs mt-4">No spam, ever. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="py-14 px-5">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🌸</span>
+          <span class="serif font-bold text-xl text-white">Noor <span style="color:var(--gold)">Boutique</span></span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color:#6b7280">Crafting graceful, modest Islamic clothing for your little ones. Quality you can trust, values you can wear.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center transition" style="background:#1877f2" title="Facebook">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center transition" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)" title="Instagram">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://wa.me/8801XXXXXXXXX" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#25d366" title="WhatsApp">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="shop.html" class="footer-link">Shop</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h5>
+        <ul class="space-y-2">
+          <li class="footer-link">📍 Dhaka, Bangladesh</li>
+          <li><a href="https://wa.me/8801XXXXXXXXX" class="footer-link">💬 WhatsApp Us</a></li>
+          <li><a href="mailto:hello@noorboutique.com" class="footer-link">✉ hello@noorboutique.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style="border-color:#1f2937">
+      <p class="text-xs" style="color:#4b5563">© 2025 Noor Boutique. All rights reserved.</p>
+      <p class="text-xs" style="color:#4b5563">Made with 🌸 for Little Hearts</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('menuBtn');
+    menu.classList.toggle('hidden');
+    btn.classList.toggle('open');
+  }
+
+  // Lazy load images observer
+  const imgs = document.querySelectorAll('img[loading="lazy"]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.src = e.target.src; io.unobserve(e.target); } });
+  });
+  imgs.forEach(img => io.observe(img));
+
+  // Sticky navbar shadow
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)';
+  });
+</script>
+</body>
+</html>
