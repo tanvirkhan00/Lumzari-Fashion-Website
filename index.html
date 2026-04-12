@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Lumzari — Modest Fashion for Little Hearts</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-
-// Style Css 
 <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
@@ -19,7 +15,7 @@
     <div class="logo-icon">L</div>
     <span class="logo-text">LUMZARI<span>.</span></span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#">Home</a></li>
     <li><a href="shop.html">Shop</a></li>
     <li><a href="about.html">About</a></li>
@@ -29,9 +25,12 @@
     <button class="nav-icon-btn" title="Search">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     </button>
-    <button class="nav-icon-btn" title="Cart" style="position:relative">
+    <button class="nav-icon-btn" title="Cart">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="cart-count">3</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
@@ -42,7 +41,7 @@
 
     <!-- Slide 1 -->
     <div class="hero-slide">
-      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85" alt="Hero 1"/>
+      <img class="hero-slide-bg" src="/src/banner_1.jpg" alt="Hero 1"/>
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <div class="hero-tag">New Collection — Eid 2025</div>
@@ -57,10 +56,10 @@
 
     <!-- Slide 2 -->
     <div class="hero-slide">
-      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&q=85" alt="Hero 2"/>
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&q=85" alt="Hero 2"/>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tag">Girls Abaya & Borka</div>
+        <div class="hero-tag">Girls Abaya &amp; Borka</div>
         <h1 class="hero-title">Dressed in<br/><em>Dignity</em></h1>
         <p class="hero-sub">Premium Nida fabric abayas and borkas designed for comfort, movement, and modesty — for girls ages 3–14.</p>
         <div class="hero-btns">
@@ -72,7 +71,7 @@
 
     <!-- Slide 3 -->
     <div class="hero-slide">
-      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&q=85" alt="Hero 3"/>
+      <img class="hero-slide-bg" src="/src/banner_2.jpg" alt="Hero 3"/>
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <div class="hero-tag">Limited Hijab Edit</div>
@@ -87,13 +86,13 @@
 
   </div>
 
-  <button class="hero-arrow hero-prev" id="heroPrev">&#8592;</button>
-  <button class="hero-arrow hero-next" id="heroNext">&#8594;</button>
+  <button class="hero-arrow hero-prev" id="heroPrev" aria-label="Previous slide">&#8592;</button>
+  <button class="hero-arrow hero-next" id="heroNext" aria-label="Next slide">&#8594;</button>
 
   <div class="hero-nav" id="heroDots">
-    <button class="hero-dot active" onclick="goSlide(0)"></button>
-    <button class="hero-dot" onclick="goSlide(1)"></button>
-    <button class="hero-dot" onclick="goSlide(2)"></button>
+    <button class="hero-dot active" aria-label="Slide 1"></button>
+    <button class="hero-dot" aria-label="Slide 2"></button>
+    <button class="hero-dot" aria-label="Slide 3"></button>
   </div>
 </section>
 
@@ -107,66 +106,65 @@
 
 <!-- ── COLLECTION SLIDER ── -->
 <section class="collection-section">
-  <div style="padding:0 60px">
+  <div>
     <div class="section-header">
       <span class="section-tag">Curated for You</span>
       <h2 class="section-title serif">Our Collections</h2>
       <div class="section-divider"><div class="section-divider-dot"></div></div>
     </div>
   </div>
-  <div class="collection-track-wrap">
+  <div class="collection-track-wrap" id="collWrap">
     <div class="collection-track" id="collTrack">
+
+      <!-- ░░ YOUR CARDS HERE ░░ -->
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&q=80" alt="Girls Dresses"/>
+        <img src="/src/collection_1.jpg" alt="Girls Dresses"/>
         <div class="collection-card-overlay"></div>
         <div class="collection-card-content">
           <div class="collection-card-name serif">Girls Dresses</div>
-          <div class="collection-card-sub">Frocks & Maxi Gowns</div>
-          <span class="collection-card-btn">Explore →</span>
+          <div class="collection-card-sub">Frocks &amp; Maxi Gowns</div>
+          <!-- <span class="collection-card-btn">Explore →</span> -->
         </div>
       </div>
+
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80" alt="Borka & Abaya"/>
+        <img src="/src/collection_2.jpg" alt="Borka & Abaya"/>
         <div class="collection-card-overlay"></div>
         <div class="collection-card-content">
-          <div class="collection-card-name serif">Borka & Abaya</div>
+          <div class="collection-card-name serif">Borka &amp; Abaya</div>
           <div class="collection-card-sub">Modest Islamic Outerwear</div>
-          <span class="collection-card-btn">Explore →</span>
+          <!-- <span class="collection-card-btn">Explore →</span> -->
         </div>
       </div>
+
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1558618047-f4e90d9d3d3d?w=500&q=80" alt="Hijab Collection"/>
+        <img src="/src/collection_3.jpg" alt="Hijab Collection"/>
         <div class="collection-card-overlay"></div>
         <div class="collection-card-content">
           <div class="collection-card-name serif">Hijab Collection</div>
-          <div class="collection-card-sub">Soft Chiffon & Cotton</div>
-          <span class="collection-card-btn">Explore →</span>
+          <div class="collection-card-sub">Soft Chiffon &amp; Cotton</div>
+          <!-- <span class="collection-card-btn">Explore →</span> -->
         </div>
       </div>
+
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=500&q=80" alt="Eid Special"/>
+        <img src="/src/collection_4.jpg" alt="Eid Special"/>
         <div class="collection-card-overlay"></div>
         <div class="collection-card-content">
           <div class="collection-card-name serif">Eid Special</div>
           <div class="collection-card-sub">Festive Occasion Wear</div>
-          <span class="collection-card-btn">Explore →</span>
+          <!-- <span class="collection-card-btn">Explore →</span> -->
         </div>
       </div>
-      <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500&q=80" alt="Winter Edit"/>
-        <div class="collection-card-overlay"></div>
-        <div class="collection-card-content">
-          <div class="collection-card-name serif">Winter Edit</div>
-          <div class="collection-card-sub">Warm & Modest Layers</div>
-          <span class="collection-card-btn">Explore →</span>
-        </div>
-      </div>
+      <!-- ░░ ADD MORE CARDS ABOVE THIS LINE ░░ -->
+
     </div>
   </div>
   <div class="slider-arrows">
-    <button class="sl-arrow" id="collPrev">&#8592;</button>
-    <button class="sl-arrow" id="collNext">&#8594;</button>
+    <button class="sl-arrow" id="collPrev" aria-label="Previous">&#8592;</button>
+    <button class="sl-arrow" id="collNext" aria-label="Next">&#8594;</button>
   </div>
+  <div class="slider-dots" id="collDots"></div>
 </section>
 
 <!-- ── PRODUCT GALLERY ── -->
@@ -182,7 +180,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&q=80" alt="Floral Maxi Dress"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Floral Maxi Dress</div>
@@ -198,7 +196,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400&q=80" alt="Navy Abaya Set"/>
         <div class="product-badges"><span class="badge badge-new">New</span><span class="badge badge-sale">Sale</span></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Navy Abaya Set</div>
@@ -214,7 +212,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80" alt="Pastel Hijab Set"/>
         <div class="product-badges"></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Pastel Hijab Set (3pcs)</div>
@@ -230,7 +228,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=400&q=80" alt="Rose Garden Gown"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Rose Garden Gown</div>
@@ -246,7 +244,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&q=80" alt="Pearl White Borka"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Pearl White Borka</div>
@@ -262,7 +260,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1568251188392-ae5bb00b8a12?w=400&q=80" alt="Eid Gown"/>
         <div class="product-badges"><span class="badge badge-sale">Sale</span></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Eid Embroidered Gown</div>
@@ -278,7 +276,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400&q=80" alt="Lavender Frock"/>
         <div class="product-badges"></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Lavender Summer Frock</div>
@@ -294,7 +292,7 @@
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&q=80" alt="Midnight Abaya"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <div class="product-wish">♡</div>
+        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Midnight Luxury Abaya</div>
@@ -397,7 +395,7 @@
 <!-- ── NEWSLETTER ── -->
 <section class="nl-section">
   <h2 class="nl-title serif">Join Our Little Family</h2>
-  <p class="nl-sub">First access to new collections, exclusive offers & Eid specials — delivered to your inbox.</p>
+  <p class="nl-sub">First access to new collections, exclusive offers &amp; Eid specials — delivered to your inbox.</p>
   <div class="nl-form">
     <input class="nl-input" type="email" placeholder="Your email address"/>
     <button class="nl-btn">Subscribe</button>
@@ -424,7 +422,7 @@
       <h5>Shop</h5>
       <ul>
         <li><a href="#">Girls Dresses</a></li>
-        <li><a href="#">Borka & Abaya</a></li>
+        <li><a href="#">Borka &amp; Abaya</a></li>
         <li><a href="#">Hijab Collection</a></li>
         <li><a href="#">Eid Special</a></li>
         <li><a href="#">New Arrivals</a></li>
@@ -455,18 +453,8 @@
   </div>
 </footer>
 
-<script>
-// Hero Slider
-let hSlide=0;const hTotal=3;
-function goSlide(n){hSlide=n;document.getElementById('heroSlides').style.transform=`translateX(-${n*100}%)`;document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===n))}
-document.getElementById('heroNext').onclick=()=>goSlide((hSlide+1)%hTotal);
-document.getElementById('heroPrev').onclick=()=>goSlide((hSlide-1+hTotal)%hTotal);
-setInterval(()=>goSlide((hSlide+1)%hTotal),5000);
+<script src="/script.js"></script>
 
-// Collection Slider
-let cOffset=0;const cCardW=344;
-document.getElementById('collNext').onclick=()=>{cOffset=Math.min(cOffset+cCardW,(5-3)*cCardW);document.getElementById('collTrack').style.transform=`translateX(-${cOffset}px)`};
-document.getElementById('collPrev').onclick=()=>{cOffset=Math.max(0,cOffset-cCardW);document.getElementById('collTrack').style.transform=`translateX(-${cOffset}px)`};
-</script>
+
 </body>
 </html>
