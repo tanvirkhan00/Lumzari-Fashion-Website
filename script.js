@@ -166,6 +166,36 @@ window.addEventListener('resize', () => setOffset(current, false));
 setOffset(0, false);
 startAuto();
 
+// Video Gallery 
+
+new Swiper('.video-swiper', {
+    loop: true,
+    centeredSlides: true,
+    slidesPerView: 1.15,
+    spaceBetween: 16,
+    autoplay: {
+      delay: 3200,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    speed: 700,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    breakpoints: {
+      480:  { slidesPerView: 1.4,  spaceBetween: 20 },
+      768:  { slidesPerView: 2.2,  spaceBetween: 24 },
+      1024: { slidesPerView: 2.8,  spaceBetween: 28 },
+      1280: { slidesPerView: 3.2,  spaceBetween: 32 }
+    }
+  });
+
 // ── Mobile Navigation ──
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');

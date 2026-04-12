@@ -4,6 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Lumzari — Modest Fashion for Little Hearts</title>
+
+// swiper cdn
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -174,140 +178,119 @@
     <h2 class="section-title serif">Featured Products</h2>
     <div class="section-divider"><div class="section-divider-dot"></div></div>
   </div>
-  <div class="products-grid">
+
+  <div class="products-grid" id="pgGrid">
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&q=80" alt="Floral Maxi Dress"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&q=80" alt="Floral Maxi Dress"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1594938298603-376cf2557bdd?w=500&q=80" alt="Floral Maxi Dress detail"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Floral Maxi Dress</div>
         <div class="product-meta">Ages 3–10 · Cotton Blend</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 1,450</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 1,450</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400&q=80" alt="Navy Abaya Set"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=500&q=80" alt="Navy Abaya Set"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=80" alt="Navy Abaya Set detail"/>
         <div class="product-badges"><span class="badge badge-new">New</span><span class="badge badge-sale">Sale</span></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Navy Abaya Set</div>
         <div class="product-meta">Ages 5–12 · Premium Nida</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 1,890</span><span class="product-old">৳ 2,200</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 1,890</span><span class="product-old">৳ 2,200</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80" alt="Pastel Hijab Set"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&q=80" alt="Pastel Hijab Set"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80" alt="Pastel Hijab Set detail"/>
         <div class="product-badges"></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Pastel Hijab Set (3pcs)</div>
         <div class="product-meta">Soft Chiffon · All Sizes</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 850</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 850</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=400&q=80" alt="Rose Garden Gown"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=500&q=80" alt="Rose Garden Gown"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80" alt="Rose Garden Gown detail"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Rose Garden Gown</div>
         <div class="product-meta">Ages 4–10 · Embroidered</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 2,100</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 2,100</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&q=80" alt="Pearl White Borka"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500&q=80" alt="Pearl White Borka"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500&q=80" alt="Pearl White Borka detail"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Pearl White Borka</div>
         <div class="product-meta">Ages 6–14 · Double Layer</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 2,350</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 2,350</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1568251188392-ae5bb00b8a12?w=400&q=80" alt="Eid Gown"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1568251188392-ae5bb00b8a12?w=500&q=80" alt="Eid Gown"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=500&q=80" alt="Eid Gown detail"/>
         <div class="product-badges"><span class="badge badge-sale">Sale</span></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Eid Embroidered Gown</div>
         <div class="product-meta">Ages 3–12 · Silk Blend</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 1,750</span><span class="product-old">৳ 2,100</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 1,750</span><span class="product-old">৳ 2,100</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400&q=80" alt="Lavender Frock"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&q=80" alt="Lavender Frock"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=500&q=80" alt="Lavender Frock detail"/>
         <div class="product-badges"></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Lavender Summer Frock</div>
         <div class="product-meta">Ages 2–8 · Linen Blend</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 1,150</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 1,150</span></div>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&q=80" alt="Midnight Abaya"/>
+        <img class="img-main" src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=500&q=80" alt="Midnight Abaya"/>
+        <img class="img-hover" src="https://images.unsplash.com/photo-1519657337289-077653f724ed?w=500&q=80" alt="Midnight Abaya detail"/>
         <div class="product-badges"><span class="badge badge-new">New</span></div>
-        <button class="product-wish" aria-label="Wishlist">♡</button>
       </div>
       <div class="product-info">
         <div class="product-name serif">Midnight Luxury Abaya</div>
         <div class="product-meta">Ages 8–14 · Premium Crepe</div>
-        <div class="product-footer">
-          <div><span class="product-price">৳ 2,800</span></div>
-          <button class="add-btn">Add to Cart</button>
-        </div>
+        <div class="product-prices"><span class="product-price">৳ 2,800</span></div>
       </div>
     </div>
 
   </div>
-  <div style="text-align:center;margin-top:48px">
-    <button class="btn-primary" style="border-radius:2px;font-size:11px;letter-spacing:.15em">View All Products</button>
+
+  <div class="mobile-shop-btn-wrap">
+    <a href="/shop" class="btn-primary">View All Products</a>
   </div>
+
 </section>
 
 <!-- ── VIDEO GALLERY ── -->
@@ -319,41 +302,68 @@
       <div class="section-divider-dot"></div>
     </div>
   </div>
-  <div class="video-grid">
-    <div class="video-card">
-      <img class="video-thumb" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Main video"/>
-      <div class="video-overlay">
-        <div class="play-btn"><div class="play-icon"></div></div>
-        <div class="video-label serif">Eid Collection 2025 Lookbook</div>
+
+  <div class="swiper video-swiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide video-card">
+        <img class="video-thumb" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Eid Collection Lookbook"/>
+        <div class="video-overlay">
+          <div class="play-btn"><div class="play-icon"></div></div>
+          <div class="video-label serif">Eid Collection 2025 Lookbook</div>
+        </div>
+        <div class="video-card-info"><div class="video-cat">Full Lookbook · 4:32</div></div>
       </div>
-      <div class="video-card-info">
-        <div class="video-cat">Full Lookbook · 4:32</div>
+
+      <div class="swiper-slide video-card">
+        <img class="video-thumb" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=700&q=80" alt="Abaya Styling Guide"/>
+        <div class="video-overlay">
+          <div class="play-btn"><div class="play-icon"></div></div>
+          <div class="video-label serif">Abaya Styling Guide</div>
+        </div>
+        <div class="video-card-info"><div class="video-cat">How to Style · 2:18</div></div>
       </div>
+
+      <div class="swiper-slide video-card">
+        <img class="video-thumb" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&q=80" alt="Hijab Tutorial for Kids"/>
+        <div class="video-overlay">
+          <div class="play-btn"><div class="play-icon"></div></div>
+          <div class="video-label serif">Hijab Tutorial for Kids</div>
+        </div>
+        <div class="video-card-info"><div class="video-cat">Tutorial · 3:05</div></div>
+      </div>
+
+      <div class="swiper-slide video-card">
+        <img class="video-thumb" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=700&q=80" alt="New Arrivals Unboxing"/>
+        <div class="video-overlay">
+          <div class="play-btn"><div class="play-icon"></div></div>
+          <div class="video-label serif">New Arrivals Unboxing</div>
+        </div>
+        <div class="video-card-info"><div class="video-cat">Unboxing · 1:47</div></div>
+      </div>
+
+      <div class="swiper-slide video-card">
+        <img class="video-thumb" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=700&q=80" alt="Behind the Scenes"/>
+        <div class="video-overlay">
+          <div class="play-btn"><div class="play-icon"></div></div>
+          <div class="video-label serif">Behind the Scenes</div>
+        </div>
+        <div class="video-card-info"><div class="video-cat">BTS · 2:55</div></div>
+      </div>
+
+      <div class="swiper-slide video-card">
+        <img class="video-thumb" src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=700&q=80" alt="Summer Collection"/>
+        <div class="video-overlay">
+          <div class="play-btn"><div class="play-icon"></div></div>
+          <div class="video-label serif">Summer Collection Reveal</div>
+        </div>
+        <div class="video-card-info"><div class="video-cat">Collection · 3:40</div></div>
+      </div>
+
     </div>
-    <div class="video-card">
-      <img class="video-thumb" src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80" alt="Abaya video"/>
-      <div class="video-overlay">
-        <div class="play-btn"><div class="play-icon"></div></div>
-        <div class="video-label serif">Abaya Styling Guide</div>
-      </div>
-      <div class="video-card-info"><div class="video-cat">How to Style · 2:18</div></div>
-    </div>
-    <div class="video-card">
-      <img class="video-thumb" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="Hijab video"/>
-      <div class="video-overlay">
-        <div class="play-btn"><div class="play-icon"></div></div>
-        <div class="video-label serif">Hijab Tutorial for Kids</div>
-      </div>
-      <div class="video-card-info"><div class="video-cat">Tutorial · 3:05</div></div>
-    </div>
-    <div class="video-card">
-      <img class="video-thumb" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80" alt="New arrivals"/>
-      <div class="video-overlay">
-        <div class="play-btn"><div class="play-icon"></div></div>
-        <div class="video-label serif">New Arrivals Unboxing</div>
-      </div>
-      <div class="video-card-info"><div class="video-cat">Unboxing · 1:47</div></div>
-    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </section>
 
@@ -452,6 +462,9 @@
     <span class="footer-copy">Made with care for little hearts.</span>
   </div>
 </footer>
+
+// Swiper JS CDN
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script src="/script.js"></script>
 
