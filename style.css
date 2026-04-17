@@ -81,7 +81,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,244,
 .sl-arrow:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 
 /* ── PRODUCT GALLERY ── */
-/* ── PRODUCT GALLERY ── */
 .products-section { padding: 100px 60px; background: var(--rose); }
 
 .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -381,14 +380,6 @@ footer{background:#0a0a0a;padding:80px 60px 40px}
 .slider-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(184,154,94,.3); cursor: pointer; transition: all .3s; border: none; padding: 0; }
 .slider-dot.active { background: var(--gold); width: 20px; border-radius: 3px; }
 
-  /* .products-section{padding:56px 16px}
-  .products-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .product-img-wrap{height:180px}
-  .product-info{padding:12px 14px 14px}
-  .product-name{font-size:15px}
-  .product-footer{flex-direction:column;align-items:flex-start;gap:8px}
-  .add-btn{width:100%;text-align:center;padding:9px 12px} */
-
   .video-section{padding:56px 16px}
   .video-grid{grid-template-columns:1fr;gap:12px}
   .video-card:first-child{grid-column:unset;height:220px}
@@ -414,7 +405,6 @@ footer{background:#0a0a0a;padding:80px 60px 40px}
   .products-grid{grid-template-columns:1fr}
   .product-img-wrap{height:260px}
   .hero-title{font-size:30px}
-  .collection-card{min-width:200px;height:280px}
   .trust-bar{flex-direction:column;align-items:flex-start;gap:8px;padding:16px}
   nav{padding:0 12px}
 }
