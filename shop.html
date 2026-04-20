@@ -1,483 +1,938 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shop — Noor Boutique</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root { --pink:#f8e8ee; --cream:#fffaf5; --beige:#f3e9dc; --navy:#1a2744; --gold:#c9a96e; --gold-light:#f0d9a8; }
-    * { scroll-behavior:smooth; }
-    body { font-family:'Poppins',sans-serif; background-color:var(--cream); color:var(--navy); }
-    h1,h2,h3,.serif { font-family:'Playfair Display',serif; }
-    .navbar { background:rgba(255,250,245,0.95); backdrop-filter:blur(12px); border-bottom:1px solid #f3e9dc; }
-    .nav-link { position:relative; color:var(--navy); font-size:0.875rem; font-weight:500; letter-spacing:0.03em; transition:color 0.3s; }
-    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--gold); transition:width 0.3s; }
-    .nav-link:hover::after,.nav-link.active::after { width:100%; }
-    .nav-link:hover { color:#c9a96e; }
-    .gold-btn { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-family:'Poppins',sans-serif; font-weight:500; letter-spacing:0.05em; transition:all 0.3s; box-shadow:0 4px 20px rgba(201,169,110,0.35); }
-    .gold-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,169,110,0.45); }
-    .product-card { background:white; border-radius:1.25rem; overflow:hidden; box-shadow:0 2px 20px rgba(26,39,68,0.06); transition:all 0.35s; }
-    .product-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(26,39,68,0.13); }
-    .product-card img { transition:transform 0.5s ease; }
-    .product-card:hover img { transform:scale(1.07); }
-    .badge-new { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-size:0.62rem; font-weight:600; letter-spacing:0.08em; padding:2px 10px; border-radius:20px; }
-    .badge-sale { background:#e85d7a; color:white; font-size:0.62rem; font-weight:600; letter-spacing:0.08em; padding:2px 10px; border-radius:20px; }
-    .filter-btn { border:1.5px solid #e2d5c8; color:#6b7280; font-size:0.8rem; padding:6px 16px; border-radius:50px; cursor:pointer; transition:all 0.25s; font-family:'Poppins',sans-serif; }
-    .filter-btn:hover,.filter-btn.active { border-color:var(--gold); color:var(--gold); background:rgba(201,169,110,0.08); }
-    .size-btn { border:1.5px solid #e2d5c8; color:#6b7280; font-size:0.75rem; padding:4px 14px; border-radius:8px; cursor:pointer; transition:all 0.25s; font-family:'Poppins',sans-serif; }
-    .size-btn:hover,.size-btn.active { border-color:var(--navy); color:var(--navy); background:rgba(26,39,68,0.05); }
-    .hero-shop { background:linear-gradient(135deg,#f8e8ee 0%,#f3e9dc 100%); }
-    .hamburger span { display:block; width:22px; height:2px; background:var(--navy); margin:5px 0; transition:all 0.3s; border-radius:2px; }
-    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    footer { background:#111827; }
-    .footer-link { color:#9ca3af; font-size:0.85rem; transition:color 0.3s; }
-    .footer-link:hover { color:var(--gold); }
-    img[loading="lazy"] { opacity:0; transition:opacity 0.5s; }
-    img.loaded { opacity:1; }
-    .wishlist-btn { position:absolute; top:10px; right:10px; background:white; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.12); transition:all 0.3s; opacity:0; }
-    .product-card:hover .wishlist-btn { opacity:1; }
-    .wishlist-btn:hover { background:var(--pink); }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shop — Lumzari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:  #0d0d0d;
+    --ink2: #141414;
+    --ink3: #1a1a1a;
+    --gold: #b89a5e;
+    --gold-light: #d4b47a;
+    --gold-pale: rgba(184,154,94,.12);
+    --cream: #f5f0e8;
+    --muted: rgba(245,240,232,.45);
+    --body:  rgba(245,240,232,.72);
+    --border: rgba(184,154,94,.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ══ NAVBAR ══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(13,13,13,.95);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.6); }
+
+  .logo-mark { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--ink); flex-shrink: 0;
+  }
+  .logo-text { font-size: 13px; font-weight: 600; letter-spacing: 0.22em; color: var(--cream); }
+  .logo-text span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+  .nav-links a {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--body);
+    text-decoration: none; transition: color .25s; position: relative; white-space: nowrap;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--gold); transition: width .3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+  .nav-right { display: flex; align-items: center; gap: 4px; }
+  .nav-icon-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--body); padding: 8px; border-radius: 2px;
+    transition: color .25s; position: relative; display: flex;
+  }
+  .nav-icon-btn:hover { color: var(--gold); }
+  .cart-count {
+    position: absolute; top: 2px; right: 2px;
+    width: 15px; height: 15px;
+    background: var(--gold); color: var(--ink);
+    font-size: 9px; font-weight: 700; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 8px; margin-left: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--cream); border-radius: 2px; transition: all .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+  /* Mobile drawer */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
+    background: rgba(13,13,13,.98); backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .35s;
+    padding: 0 24px;
+  }
+  .mobile-menu.open { max-height: 420px; padding: 18px 24px 28px; }
+
+  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 18px; }
+  .mobile-menu ul li a {
+    display: block; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--body); text-decoration: none;
+    padding: 13px 8px;
+    border-bottom: 1px solid rgba(184,154,94,.1);
+    transition: color .22s, padding-left .22s;
+  }
+  .mobile-menu ul li a:hover, .mobile-menu ul li a.active { color: var(--gold); padding-left: 14px; }
+  .mobile-menu ul li:last-child a { border-bottom: none; }
+
+  /* ══ SHOP HERO ══ */
+  .shop-hero {
+    position: relative; padding: 140px 48px 72px;
+    overflow: hidden; background: var(--ink2); min-height: 380px;
+  }
+  .shop-hero-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 35%;
+    opacity: 0.3; filter: saturate(0.55); z-index: 0;
+  }
+  .shop-hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(to right, rgba(13,13,13,.96) 35%, rgba(13,13,13,.6) 100%),
+      linear-gradient(to top, rgba(13,13,13,.9) 0%, transparent 55%);
+  }
+  .shop-hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 55% 60% at 80% 50%, rgba(184,154,94,.06) 0%, transparent 70%);
+  }
+  .shop-hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
+  }
+  .shop-hero-tag {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 18px; background: var(--gold-pale);
+  }
+  .shop-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5.5vw, 80px);
+    font-weight: 600; line-height: 1.0; color: var(--cream); margin-bottom: 16px;
+  }
+  .shop-hero-title em { font-style: italic; color: var(--gold); }
+  .shop-hero-sub { font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.75; max-width: 400px; }
+  .shop-hero-stats { display: flex; gap: 36px; padding-bottom: 4px; flex-shrink: 0; }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 600; color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); margin-top: 4px;
+  }
+  .hero-divider {
+    position: relative; z-index: 2;
+    width: 100%; height: 1px; background: var(--border); margin-top: 48px;
+  }
+
+  /* ══ TRUST BAR ══ */
+  .trust-bar {
+    background: var(--ink2); border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; justify-content: center;
+  }
+  .trust-item {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--body); padding: 14px 24px;
+    display: flex; align-items: center; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { color: var(--gold); font-size: 8px; }
+
+  /* ══ SHOP LAYOUT ══ */
+  .shop-layout {
+    max-width: 1240px; margin: 0 auto;
+    padding: 48px 48px 100px;
+    display: grid; grid-template-columns: 210px 1fr; gap: 48px; align-items: start;
+  }
+
+  /* ══ SIDEBAR ══ */
+  .sidebar { position: sticky; top: 84px; }
+
+  .filter-toggle {
+    display: none; width: 100%;
+    background: var(--ink2); border: 1px solid var(--border);
+    color: var(--cream); font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 13px 18px; border-radius: 2px; cursor: pointer;
+    align-items: center; justify-content: space-between; transition: border-color .25s;
+  }
+  .filter-toggle:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-toggle-icon { font-size: 10px; transition: transform .3s; }
+  .filter-toggle.open .filter-toggle-icon { transform: rotate(180deg); }
+
+  .sidebar-inner { display: flex; flex-direction: column; }
+
+  .sidebar-section { border-bottom: 1px solid var(--border); padding: 22px 0; }
+  .sidebar-section:first-child { padding-top: 0; }
+  .sidebar-section:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .sidebar-label {
+    display: block; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 2px; }
+  .filter-btn {
+    background: none; border: none; cursor: pointer; text-align: left;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
+    color: var(--body); padding: 9px 12px; border-radius: 2px;
+    transition: all .22s; position: relative; letter-spacing: 0.02em;
+  }
+  .filter-btn::before {
+    content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 2px; height: 0; background: var(--gold); border-radius: 1px; transition: height .22s;
+  }
+  .filter-btn:hover, .filter-btn.active { color: var(--gold); background: var(--gold-pale); padding-left: 18px; }
+  .filter-btn:hover::before, .filter-btn.active::before { height: 60%; }
+
+  .size-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .size-btn {
+    background: none; border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
+    color: var(--body); padding: 5px 12px; border-radius: 2px;
+    cursor: pointer; transition: all .22s; letter-spacing: 0.05em;
+  }
+  .size-btn:hover, .size-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-pale); }
+
+  input[type="range"] {
+    -webkit-appearance: none; width: 100%; height: 2px;
+    background: var(--border); border-radius: 2px; outline: none; cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px;
+    background: var(--gold); border-radius: 50%;
+    border: 2px solid var(--ink); box-shadow: 0 0 0 2px var(--gold);
+  }
+  .price-val { font-size: 12px; color: var(--gold); margin-top: 10px; font-weight: 500; }
+
+  /* ══ PRODUCTS AREA ══ */
+  .products-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 28px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap;
+  }
+  .products-count { font-size: 12px; color: var(--muted); }
+  .products-count span { color: var(--gold); font-weight: 600; }
+
+  .sort-select {
+    background: var(--ink2); border: 1px solid var(--border); color: var(--body);
+    font-family: 'Inter', sans-serif; font-size: 11px;
+    padding: 8px 32px 8px 12px; border-radius: 2px;
+    outline: none; cursor: pointer; transition: border-color .22s;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b89a5e' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center;
+  }
+  .sort-select:focus { border-color: var(--gold); }
+
+  /* ══ PRODUCT GRID ══ */
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .product-card {
+    background: var(--ink2); border: 1px solid var(--border);
+    border-radius: 3px; overflow: hidden;
+    transition: all .35s cubic-bezier(.25,.46,.45,.94); cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(184,154,94,.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(184,154,94,.1);
+  }
+
+  .product-img-wrap {
+    position: relative; overflow: hidden; height: 260px; background: var(--ink3);
+  }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-main { transition: transform .55s cubic-bezier(.25,.46,.45,.94), opacity .45s ease; }
+  .product-card:hover .img-main { transform: scale(1.06); opacity: 0; }
+  .img-hover {
+    position: absolute; inset: 0; z-index: 2;
+    opacity: 0; transform: scale(1.06);
+    transition: opacity .55s ease, transform .55s cubic-bezier(.25,.46,.45,.94);
+  }
+  .product-card:hover .img-hover { opacity: 1; transform: scale(1.0); }
+
+  .product-badges { position: absolute; top: 12px; left: 12px; display: flex; gap: 5px; z-index: 3; }
+  .badge { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; }
+  .badge-new { background: var(--gold); color: var(--ink); }
+  .badge-sale { background: #c0392b; color: #fff; }
+
+  .wishlist-btn {
+    position: absolute; top: 10px; right: 10px;
+    width: 30px; height: 30px;
+    background: rgba(13,13,13,.72); border: 1px solid var(--border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 3; backdrop-filter: blur(6px);
+    opacity: 0; transition: opacity .3s, background .25s;
+  }
+  .product-card:hover .wishlist-btn { opacity: 1; }
+  .wishlist-btn:hover { background: rgba(184,154,94,.15); border-color: var(--gold); }
+  .wishlist-btn svg { width: 13px; height: 13px; stroke: var(--cream); fill: none; }
+
+  .product-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 12px;
+    background: linear-gradient(to top, rgba(13,13,13,.9) 0%, transparent 100%);
+    transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.25,.46,.45,.94);
+  }
+  .product-card:hover .product-overlay { transform: translateY(0); }
+
+  .add-cart-btn {
+    width: 100%; background: var(--gold); color: var(--ink);
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 10px; border-radius: 1px; transition: background .25s;
+  }
+  .add-cart-btn:hover { background: var(--gold-light); }
+
+  .product-info { padding: 16px 16px 18px; border-top: 1px solid var(--border); }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 600; color: var(--cream); margin-bottom: 4px; line-height: 1.25;
+  }
+  .product-meta { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+  .product-prices { display: flex; align-items: baseline; gap: 8px; }
+  .product-price { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--gold); }
+  .product-old { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+
+  /* Load more */
+  .load-more-wrap { text-align: center; margin-top: 48px; }
+  .btn-outline {
+    display: inline-block; border: 1px solid var(--border); color: var(--gold);
+    background: none; font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 14px 40px; border-radius: 2px; cursor: pointer;
+    transition: all .3s; position: relative; overflow: hidden;
+  }
+  .btn-outline::before {
+    content: ''; position: absolute; inset: 0; background: var(--gold-pale);
+    transform: scaleX(0); transform-origin: left; transition: transform .3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); }
+  .btn-outline:hover::before { transform: scaleX(1); }
+  .btn-outline span { position: relative; z-index: 1; }
+
+  /* ══ FOOTER ══ */
+  footer { background: var(--ink2); border-top: 1px solid var(--border); padding: 60px 48px 30px; }
+  .footer-grid {
+    max-width: 1240px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid var(--border);
+  }
+  .footer-tagline { font-size: 12px; color: var(--muted); line-height: 1.8; margin: 14px 0 22px; }
+  .footer-col h5 { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 12px; color: var(--body); text-decoration: none; transition: color .25s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; padding-top: 22px; flex-wrap: wrap; gap: 8px;
+  }
+  .footer-copy { font-size: 11px; color: var(--muted); }
+  .social-links { display: flex; gap: 8px; }
+  .social-btn {
+    width: 32px; height: 32px; border: 1px solid var(--border); color: var(--body);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 11px; font-weight: 600; border-radius: 2px; transition: all .25s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-pale); }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .shop-hero-text  { animation: fadeUp .7s ease both; }
+  .shop-hero-stats { animation: fadeUp .7s .15s ease both; }
+  .product-card { animation: fadeUp .5s ease both; }
+  .product-card:nth-child(1)  { animation-delay: .04s; }
+  .product-card:nth-child(2)  { animation-delay: .08s; }
+  .product-card:nth-child(3)  { animation-delay: .12s; }
+  .product-card:nth-child(4)  { animation-delay: .16s; }
+  .product-card:nth-child(5)  { animation-delay: .20s; }
+  .product-card:nth-child(6)  { animation-delay: .24s; }
+  .product-card:nth-child(7)  { animation-delay: .28s; }
+  .product-card:nth-child(8)  { animation-delay: .32s; }
+  .product-card:nth-child(9)  { animation-delay: .36s; }
+  .product-card:nth-child(10) { animation-delay: .40s; }
+  .product-card:nth-child(11) { animation-delay: .44s; }
+  .product-card:nth-child(12) { animation-delay: .48s; }
+
+  /* ══════════════════════
+     TABLET  ≤ 1024px
+  ══════════════════════ */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .shop-hero { padding: 120px 32px 60px; }
+    .shop-layout { grid-template-columns: 190px 1fr; padding: 36px 32px 80px; gap: 32px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    footer { padding: 50px 32px 26px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+
+  /* ══════════════════════
+     MOBILE  ≤ 768px
+  ══════════════════════ */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; height: 60px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: block; top: 60px; }
+
+    .shop-hero { padding: 100px 20px 50px; min-height: unset; }
+    .shop-hero::before {
+      background:
+        linear-gradient(rgba(13,13,13,.82), rgba(13,13,13,.75)),
+        linear-gradient(to top, rgba(13,13,13,.9) 0%, transparent 55%);
+    }
+    .shop-hero-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .shop-hero-title { font-size: clamp(34px, 9vw, 52px); }
+    .shop-hero-sub { font-size: 13px; max-width: 100%; }
+    .shop-hero-stats { gap: 24px; }
+    .stat-num { font-size: 30px; }
+    .stat-item { text-align: left; }
+
+    .shop-layout { grid-template-columns: 1fr; padding: 24px 20px 60px; gap: 0; }
+    .sidebar { position: static; margin-bottom: 24px; }
+    .filter-toggle { display: flex; }
+    .sidebar-inner {
+      overflow: hidden; max-height: 0;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .35s;
+      border: 1px solid var(--border); border-top: none;
+      background: var(--ink2); border-radius: 0 0 3px 3px;
+      padding: 0 16px;
+    }
+    .sidebar-inner.open { max-height: 700px; padding: 16px 16px 20px; }
+
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .product-img-wrap { height: 210px; }
+
+    /* Always show overlay & wishlist on mobile (no hover) */
+    .product-overlay { transform: translateY(0); }
+    .wishlist-btn { opacity: 1; }
+
+    .trust-item { flex: 1 1 45%; border-right: none; border-bottom: 1px solid var(--border); justify-content: center; }
+    .trust-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    footer { padding: 44px 20px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+
+  /* ══════════════════════
+     SMALL  ≤ 480px
+  ══════════════════════ */
+  @media (max-width: 480px) {
+    nav { padding: 0 16px; }
+    .logo-text { font-size: 12px; letter-spacing: 0.18em; }
+
+    .shop-hero { padding: 86px 16px 42px; }
+    .shop-hero-title { font-size: clamp(30px, 10vw, 42px); }
+    .shop-hero-sub { font-size: 12.5px; line-height: 1.7; }
+    .shop-hero-stats { gap: 18px; flex-wrap: wrap; }
+    .stat-num { font-size: 26px; }
+    .stat-label { font-size: 8px; }
+
+    .shop-layout { padding: 20px 14px 50px; }
+
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+    .product-img-wrap { height: 175px; }
+    .product-info { padding: 11px 11px 13px; }
+    .product-name { font-size: 14px; }
+    .product-price { font-size: 16px; }
+    .product-meta { font-size: 9px; margin-bottom: 7px; }
+    .add-cart-btn { font-size: 9px; padding: 8px; letter-spacing: 0.1em; }
+
+    .trust-item { flex: 1 1 100%; border-bottom: 1px solid var(--border); border-right: none; }
+    .trust-item:last-child { border-bottom: none; }
+
+    footer { padding: 36px 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+    .btn-outline { padding: 12px 24px; font-size: 9px; width: 100%; }
+    .load-more-wrap { margin-top: 28px; }
+  }
+
+  /* ══════════════════════
+     XS  ≤ 360px
+  ══════════════════════ */
+  @media (max-width: 360px) {
+    nav { padding: 0 12px; }
+    .logo-text { font-size: 11px; letter-spacing: 0.14em; }
+    .products-grid { gap: 7px; }
+    .product-img-wrap { height: 155px; }
+    .product-name { font-size: 13px; }
+    .add-cart-btn { font-size: 8px; }
+  }
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
-    <a href="index.html" class="flex items-center gap-2">
-      <span class="text-2xl">🌸</span>
-      <div><span class="serif font-bold text-xl" style="color:var(--navy)">Noor</span><span class="serif font-bold text-xl" style="color:var(--gold)"> Boutique</span></div>
-    </a>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="shop.html" class="nav-link active">Shop</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </div>
-    <div class="flex items-center gap-4">
-      <button class="relative p-2 rounded-full hover:bg-pink-50 transition">
-        <svg class="w-5 h-5" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        <span class="absolute top-0 right-0 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center gold-btn">3</span>
-      </button>
-      <button class="hamburger md:hidden p-1" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div id="mobileMenu" class="hidden md:hidden px-5 pb-4 flex flex-col gap-3 border-t" style="border-color:#f3e9dc;background:rgba(255,250,245,0.98)">
-    <a href="index.html" class="nav-link py-2">Home</a>
-    <a href="shop.html" class="nav-link py-2">Shop</a>
-    <a href="about.html" class="nav-link py-2">About</a>
-    <a href="contact.html" class="nav-link py-2">Contact</a>
+<!-- ══ NAVBAR ══ -->
+<nav id="mainNav">
+  <a href="index.html" class="logo-mark">
+    <div class="logo-icon">L</div>
+    <span class="logo-text">LUMZARI<span>.</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="nav-icon-btn" title="Search">
+      <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="nav-icon-btn" title="Cart">
+      <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count">3</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- SHOP HERO -->
-<section class="hero-shop pt-28 pb-14 px-5">
-  <div class="max-w-7xl mx-auto text-center">
-    <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">Our Full Range</p>
-    <h1 class="text-4xl md:text-5xl font-bold mb-3" style="color:var(--navy)">Shop Our Collection</h1>
-    <p class="text-gray-500 text-sm max-w-md mx-auto">Discover modest, elegant clothing crafted with love for your little ones.</p>
-  </div>
-</section>
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
 
-<!-- MAIN SHOP LAYOUT -->
-<section class="py-10 px-5 max-w-7xl mx-auto">
-  <div class="flex flex-col md:flex-row gap-8">
-
-    <!-- SIDEBAR FILTERS -->
-    <aside class="md:w-60 shrink-0">
-      <div class="bg-white rounded-2xl shadow-sm p-6 sticky top-20">
-        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:var(--navy)">Filter By</h3>
-
-        <!-- Category Filter -->
-        <div class="mb-6">
-          <p class="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-400">Category</p>
-          <div class="flex flex-col gap-2">
-            <button class="filter-btn active text-left" onclick="filterProducts('all', this)">All Products</button>
-            <button class="filter-btn text-left" onclick="filterProducts('dress', this)">Girls Dresses</button>
-            <button class="filter-btn text-left" onclick="filterProducts('abaya', this)">Borka / Abaya</button>
-            <button class="filter-btn text-left" onclick="filterProducts('hijab', this)">Hijab Collection</button>
-          </div>
-        </div>
-
-        <!-- Size Filter -->
-        <div class="mb-6">
-          <p class="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-400">Size (Kids)</p>
-          <div class="flex flex-wrap gap-2">
-            <button class="size-btn" onclick="toggleSize(this)">2-3Y</button>
-            <button class="size-btn" onclick="toggleSize(this)">4-5Y</button>
-            <button class="size-btn" onclick="toggleSize(this)">6-7Y</button>
-            <button class="size-btn" onclick="toggleSize(this)">8-10Y</button>
-            <button class="size-btn" onclick="toggleSize(this)">11-12Y</button>
-          </div>
-        </div>
-
-        <!-- Price Range -->
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-400">Price Range</p>
-          <input type="range" min="500" max="3000" value="3000" class="w-full accent-yellow-600" oninput="document.getElementById('priceVal').innerText='৳ '+this.value"/>
-          <p class="text-xs mt-2 text-gray-500">Up to <span id="priceVal" class="font-semibold" style="color:var(--gold)">৳ 3000</span></p>
-        </div>
-      </div>
-    </aside>
-
-    <!-- PRODUCTS GRID -->
-    <div class="flex-1">
-      <!-- Sorting bar -->
-      <div class="flex items-center justify-between mb-6">
-        <p class="text-sm text-gray-500"><span id="productCount">12</span> products found</p>
-        <select class="text-sm border rounded-xl px-3 py-2 text-gray-600 focus:outline-none" style="border-color:#e2d5c8;font-family:'Poppins',sans-serif">
-          <option>Sort: Newest First</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-          <option>Best Selling</option>
-        </select>
-      </div>
-
-      <!-- Products -->
-      <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Product 1 -->
-        <div class="product-card" data-cat="dress">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Floral Maxi Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3 flex gap-1"><span class="badge-new">NEW</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Floral Maxi Dress</h4>
-            <p class="text-xs text-gray-400 mb-1">Cotton Blend</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 1,450</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card" data-cat="abaya">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1543955118-4e6fbe3d9d48?w=400&q=80" alt="Navy Abaya Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3 flex gap-1"><span class="badge-new">NEW</span><span class="badge-sale">SALE</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Navy Abaya Set</h4>
-            <p class="text-xs text-gray-400 mb-1">Premium Nida</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">11-12Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="font-bold" style="color:var(--gold)">৳ 1,890</span>
-                <span class="text-xs text-gray-400 line-through ml-1">৳ 2,200</span>
-              </div>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card" data-cat="hijab">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1617751192007-40ef2a03d17b?w=400&q=80" alt="Pastel Hijab Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Pastel Hijab Set (3pcs)</h4>
-            <p class="text-xs text-gray-400 mb-1">Soft Chiffon</p>
-            <p class="text-xs text-gray-400 mb-3">One size fits 4–12Y</p>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 850</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card" data-cat="dress">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1513094735237-8f2714d57c13?w=400&q=80" alt="Rose Garden Gown" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Rose Garden Gown</h4>
-            <p class="text-xs text-gray-400 mb-1">Embroidered Tulle</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 2,100</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card" data-cat="abaya">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1596463059283-da257325bab8?w=400&q=80" alt="Pink Pearl Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Pink Pearl Abaya</h4>
-            <p class="text-xs text-gray-400 mb-1">Crepe Fabric</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 1,750</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card" data-cat="hijab">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1558369178-6556d97855d0?w=400&q=80" alt="Satin Hijab Set" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3"><span class="badge-sale">SALE</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Satin Shimmer Hijab</h4>
-            <p class="text-xs text-gray-400 mb-1">Satin • Colors: 6</p>
-            <p class="text-xs text-gray-400 mb-3">One size fits 3–12Y</p>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="font-bold" style="color:var(--gold)">৳ 650</span>
-                <span class="text-xs text-gray-400 line-through ml-1">৳ 900</span>
-              </div>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card" data-cat="dress">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&q=80" alt="Garden Party Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Garden Party Dress</h4>
-            <p class="text-xs text-gray-400 mb-1">Cotton Lawn</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">2-3Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 1,200</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card" data-cat="abaya">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1602722004527-0b6af8ae1f13?w=400&q=80" alt="Classic Black Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Classic Embroidered Abaya</h4>
-            <p class="text-xs text-gray-400 mb-1">Premium Nida</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">11-12Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 2,350</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 9 -->
-        <div class="product-card" data-cat="hijab">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Lace Trim Hijab" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Lace Trim Hijab</h4>
-            <p class="text-xs text-gray-400 mb-1">Jersey Cotton • Colors: 4</p>
-            <p class="text-xs text-gray-400 mb-3">One size fits 4–12Y</p>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 750</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 10 -->
-        <div class="product-card" data-cat="dress">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1513094735237-8f2714d57c13?w=400&q=80" alt="Eid Special Gown" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3"><span class="badge-sale">SALE</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Eid Special Gown</h4>
-            <p class="text-xs text-gray-400 mb-1">Silk Blend</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">8-10Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="font-bold" style="color:var(--gold)">৳ 1,980</span>
-                <span class="text-xs text-gray-400 line-through ml-1">৳ 2,500</span>
-              </div>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 11 -->
-        <div class="product-card" data-cat="abaya">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1596463059283-da257325bab8?w=400&q=80" alt="Lavender Abaya" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-            <div class="absolute top-3 left-3"><span class="badge-new">NEW</span></div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Lavender Lace Abaya</h4>
-            <p class="text-xs text-gray-400 mb-1">Nida + Lace Panel</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">6-7Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 1,950</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 12 -->
-        <div class="product-card" data-cat="dress">
-          <div class="overflow-hidden relative" style="height:260px">
-            <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=400&q=80" alt="Blush Tulle Dress" class="w-full h-full object-cover" loading="lazy" onload="this.classList.add('loaded')"/>
-            <button class="wishlist-btn">❤️</button>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-sm mb-1" style="color:var(--navy)">Blush Tulle Dress</h4>
-            <p class="text-xs text-gray-400 mb-1">Tulle Overlay</p>
-            <div class="flex gap-1 mb-3">
-              <span class="size-btn text-xs py-0.5 px-2">2-3Y</span>
-              <span class="size-btn text-xs py-0.5 px-2">4-5Y</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color:var(--gold)">৳ 1,350</span>
-              <button class="gold-btn text-xs px-4 py-2 rounded-full">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /grid -->
-
-      <!-- Load More -->
-      <div class="text-center mt-10">
-        <button class="outline-btn px-10 py-3.5 rounded-full text-sm" style="border:1.5px solid var(--gold);color:var(--gold);font-family:'Poppins',sans-serif;font-weight:500;letter-spacing:0.05em;transition:all 0.3s;">Load More</button>
-      </div>
+<!-- ══ SHOP HERO ══ -->
+<section class="shop-hero">
+  <img class="shop-hero-bg" src="/src/banner_1.jpg" alt=""/>
+  <div class="shop-hero-inner">
+    <div class="shop-hero-text">
+      <div class="shop-hero-tag">Full Collection — 2025</div>
+      <h1 class="shop-hero-title">Discover<br/>Our <em>Collection</em></h1>
+      <p class="shop-hero-sub">Modest, elegant Islamic fashion for little ones — crafted with love, worn with pride. Filter by category, size, and price to find the perfect piece.</p>
+    </div>
+    <div class="shop-hero-stats">
+      <div class="stat-item"><div class="stat-num">48+</div><div class="stat-label">Products</div></div>
+      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Collections</div></div>
+      <div class="stat-item"><div class="stat-num">1K+</div><div class="stat-label">Families</div></div>
     </div>
   </div>
+  <div class="hero-divider"></div>
 </section>
 
-<!-- FOOTER -->
-<footer class="py-14 px-5 mt-10">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-10 mb-10">
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-2xl">🌸</span>
-          <span class="serif font-bold text-xl text-white">Noor <span style="color:var(--gold)">Boutique</span></span>
-        </div>
-        <p class="text-sm leading-relaxed mb-5" style="color:#6b7280">Crafting graceful, modest Islamic clothing for your little ones.</p>
-        <div class="flex gap-4">
-          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#1877f2">
-            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          </a>
+<!-- ══ TRUST BAR ══ -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">✦</span> Premium Quality Fabrics</div>
+  <div class="trust-item"><span class="trust-icon">✦</span> Child-Safe Materials</div>
+  <div class="trust-item"><span class="trust-icon">✦</span> Fast Bangladesh Delivery</div>
+  <div class="trust-item"><span class="trust-icon">✦</span> Halal Modest Fashion</div>
+</div>
+
+<!-- ══ SHOP LAYOUT ══ -->
+<div class="shop-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <button class="filter-toggle" id="filterToggle" onclick="toggleFilters()">
+      <span>Filter &amp; Sort</span>
+      <span class="filter-toggle-icon">▼</span>
+    </button>
+    <div class="sidebar-inner" id="sidebarInner">
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Category</span>
+        <div class="filter-group">
+          <button class="filter-btn active" onclick="filterProducts('all',this)">All Products</button>
+          <button class="filter-btn" onclick="filterProducts('dress',this)">Girls Dresses</button>
+          <button class="filter-btn" onclick="filterProducts('abaya',this)">Borka &amp; Abaya</button>
+          <button class="filter-btn" onclick="filterProducts('hijab',this)">Hijab Collection</button>
+          <button class="filter-btn" onclick="filterProducts('eid',this)">Eid Special</button>
         </div>
       </div>
-      <div>
-        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="footer-link">Home</a></li>
-          <li><a href="shop.html" class="footer-link">Shop</a></li>
-          <li><a href="about.html" class="footer-link">About Us</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
-        </ul>
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Size (Kids)</span>
+        <div class="size-grid">
+          <button class="size-btn" onclick="this.classList.toggle('active')">2–3Y</button>
+          <button class="size-btn" onclick="this.classList.toggle('active')">4–5Y</button>
+          <button class="size-btn" onclick="this.classList.toggle('active')">6–7Y</button>
+          <button class="size-btn" onclick="this.classList.toggle('active')">8–10Y</button>
+          <button class="size-btn" onclick="this.classList.toggle('active')">11–12Y</button>
+          <button class="size-btn" onclick="this.classList.toggle('active')">13–14Y</button>
+        </div>
       </div>
-      <div>
-        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h5>
-        <ul class="space-y-2">
-          <li class="footer-link">📍 Dhaka, Bangladesh</li>
-          <li><a href="#" class="footer-link">💬 WhatsApp Us</a></li>
-          <li><a href="mailto:hello@noorboutique.com" class="footer-link">✉ hello@noorboutique.com</a></li>
-        </ul>
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Price Range</span>
+        <input type="range" min="500" max="3000" value="3000"
+          oninput="document.getElementById('priceVal').textContent='৳ '+this.value"/>
+        <div class="price-val">Up to <span id="priceVal">৳ 3000</span></div>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Sort By</span>
+        <div class="filter-group">
+          <button class="filter-btn active" onclick="setSortBtn(this)">Newest First</button>
+          <button class="filter-btn" onclick="setSortBtn(this)">Price: Low to High</button>
+          <button class="filter-btn" onclick="setSortBtn(this)">Price: High to Low</button>
+          <button class="filter-btn" onclick="setSortBtn(this)">Best Selling</button>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- PRODUCTS -->
+  <div>
+    <div class="products-header">
+      <p class="products-count"><span id="productCount">12</span> products found</p>
+      <select class="sort-select" aria-label="Sort products">
+        <option>Newest First</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Best Selling</option>
+      </select>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+
+      <div class="product-card" data-cat="dress">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product1_image.jpg" alt="Butterfly Print Party Dress"/>
+          <img class="img-hover" src="/src/product1_image1.jpg" alt="Butterfly Print Party Dress"/>
+          <div class="product-badges"><span class="badge badge-new">New</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Butterfly Print Party Dress</div>
+          <div class="product-meta">Ages 3–10 · Cotton Blend</div>
+          <div class="product-prices"><span class="product-price">৳ 1,450</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="abaya">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product2_image.jpg" alt="Sapphire Bow Modest Dress"/>
+          <img class="img-hover" src="/src/product2_image1.jpg" alt="Sapphire Bow Modest Dress"/>
+          <div class="product-badges"><span class="badge badge-new">New</span><span class="badge badge-sale">Sale</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Sapphire Bow Modest Dress</div>
+          <div class="product-meta">Ages 5–12 · Premium Nida</div>
+          <div class="product-prices"><span class="product-price">৳ 1,890</span><span class="product-old">৳ 2,200</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="dress">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/collection_4.jpg" alt="Long Sleeve Ethnic Kids Dress"/>
+          <img class="img-hover" src="/src/product3_image2.jpg" alt="Long Sleeve Ethnic Kids Dress"/>
+          <div class="product-badges"></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Long Sleeve Ethnic Dress</div>
+          <div class="product-meta">Cotton · All Sizes</div>
+          <div class="product-prices"><span class="product-price">৳ 850</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="dress">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product4_image.jpg" alt="Azure Bloom Princess Dress"/>
+          <img class="img-hover" src="/src/product4_image1.jpg" alt="Azure Bloom Princess Dress"/>
+          <div class="product-badges"><span class="badge badge-new">New</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Azure Bloom Princess Dress</div>
+          <div class="product-meta">Ages 4–10 · Embroidered</div>
+          <div class="product-prices"><span class="product-price">৳ 2,100</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="dress">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product4_image3.jpg" alt="Elegant Floral Flow Dress"/>
+          <img class="img-hover" src="/src/product4_image2.jpg" alt="Elegant Floral Flow Dress"/>
+          <div class="product-badges"><span class="badge badge-new">New</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Elegant Floral Flow Dress</div>
+          <div class="product-meta">Ages 6–14 · Double Layer</div>
+          <div class="product-prices"><span class="product-price">৳ 2,350</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="abaya">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product5_image1.jpg" alt="Long-Sleeve Abaya"/>
+          <img class="img-hover" src="/src/product5_image2.jpg" alt="Long-Sleeve Abaya"/>
+          <div class="product-badges"><span class="badge badge-sale">Sale</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Long-Sleeve Abaya</div>
+          <div class="product-meta">Ages 3–12 · Silk Blend</div>
+          <div class="product-prices"><span class="product-price">৳ 1,750</span><span class="product-old">৳ 2,100</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="dress">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product7_image.jpg" alt="Lavender Summer Frock"/>
+          <div class="product-badges"></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Lavender Summer Frock</div>
+          <div class="product-meta">Ages 2–8 · Linen Blend</div>
+          <div class="product-prices"><span class="product-price">৳ 1,150</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="abaya">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/product8_image.jpg" alt="Modern Contrast Hijab Dress"/>
+          <img class="img-hover" src="/src/product8_image1.jpg" alt="Modern Contrast Hijab Dress"/>
+          <div class="product-badges"><span class="badge badge-new">New</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Modern Contrast Hijab Dress</div>
+          <div class="product-meta">Ages 8–14 · Premium Crepe</div>
+          <div class="product-prices"><span class="product-price">৳ 2,800</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="hijab">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/collection_3.jpg" alt="Pastel Chiffon Hijab Set"/>
+          <div class="product-badges"><span class="badge badge-new">New</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Pastel Chiffon Hijab Set</div>
+          <div class="product-meta">One Size · Soft Chiffon</div>
+          <div class="product-prices"><span class="product-price">৳ 750</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="eid">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/collection_4.jpg" alt="Eid Special Gown 2025"/>
+          <div class="product-badges"><span class="badge badge-new">New</span><span class="badge badge-sale">Sale</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Eid Special Gown 2025</div>
+          <div class="product-meta">Ages 6–14 · Silk Blend</div>
+          <div class="product-prices"><span class="product-price">৳ 1,980</span><span class="product-old">৳ 2,500</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="abaya">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/collection_2.jpg" alt="Classic Embroidered Abaya"/>
+          <div class="product-badges"></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Classic Embroidered Abaya</div>
+          <div class="product-meta">Ages 8–14 · Premium Nida</div>
+          <div class="product-prices"><span class="product-price">৳ 2,350</span></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="dress">
+        <div class="product-img-wrap">
+          <img class="img-main" src="/src/collection_1.jpg" alt="Girls Festive Frock"/>
+          <div class="product-badges"><span class="badge badge-new">New</span></div>
+          <button class="wishlist-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+          <div class="product-overlay"><button class="add-cart-btn">Add to Cart</button></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Girls Festive Frock</div>
+          <div class="product-meta">Ages 2–8 · Cotton Blend</div>
+          <div class="product-prices"><span class="product-price">৳ 1,350</span></div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <div class="load-more-wrap">
+      <button class="btn-outline"><span>Load More Products</span></button>
+    </div>
+  </div>
+
+</div><!-- /shop-layout -->
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="logo-mark">
+        <div class="logo-icon">L</div>
+        <span class="logo-text">LUMZARI<span>.</span></span>
+      </a>
+      <p class="footer-tagline">Crafting graceful, modest Islamic clothing for your little ones. Quality you can trust, values you can wear.</p>
+      <div class="social-links">
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#" style="font-size:10px">ig</a>
+        <a class="social-btn" href="#" style="font-size:10px">wa</a>
       </div>
     </div>
-    <div class="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style="border-color:#1f2937">
-      <p class="text-xs" style="color:#4b5563">© 2025 Noor Boutique. All rights reserved.</p>
-      <p class="text-xs" style="color:#4b5563">Made with 🌸 for Little Hearts</p>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#">Girls Dresses</a></li>
+        <li><a href="#">Borka &amp; Abaya</a></li>
+        <li><a href="#">Hijab Collection</a></li>
+        <li><a href="#">Eid Special</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Lumzari</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">Dhaka, Bangladesh</a></li>
+        <li><a href="#">WhatsApp Us</a></li>
+        <li><a href="#">hello@lumzari.com</a></li>
+        <li><a href="#">Returns Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Lumzari. All rights reserved.</span>
+    <span class="footer-copy">Made with care for little hearts.</span>
   </div>
 </footer>
 
 <script>
+  /* Scroll shadow */
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  /* Hamburger toggle */
   function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-    document.getElementById('menuBtn').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
 
-  function filterProducts(category, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  /* Filter sidebar toggle (mobile) */
+  function toggleFilters() {
+    document.getElementById('filterToggle').classList.toggle('open');
+    document.getElementById('sidebarInner').classList.toggle('open');
+  }
+
+  /* Category filter */
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.sidebar-section .filter-group .filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cards = document.querySelectorAll('#productsGrid .product-card');
     let count = 0;
-    cards.forEach(card => {
-      if(category === 'all' || card.dataset.cat === category) {
-        card.style.display = '';
-        count++;
-      } else {
-        card.style.display = 'none';
-      }
+    document.querySelectorAll('#productsGrid .product-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+      if (show) count++;
     });
     document.getElementById('productCount').textContent = count;
   }
 
-  function toggleSize(btn) {
-    btn.classList.toggle('active');
+  /* Sort highlight */
+  function setSortBtn(btn) {
+    btn.closest('.filter-group').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   }
 
-  // Lazy load
-  const imgs = document.querySelectorAll('img[loading="lazy"]');
-  const io = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target.src = e.target.src; io.unobserve(e.target); } }));
-  imgs.forEach(img => io.observe(img));
-
-  window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)';
+  /* Close mobile menu when clicking outside */
+  document.addEventListener('click', e => {
+    const nav = document.getElementById('mainNav');
+    const menu = document.getElementById('mobileMenu');
+    if (!nav.contains(e.target) && !menu.contains(e.target)) {
+      document.getElementById('hamburger').classList.remove('open');
+      menu.classList.remove('open');
+    }
   });
 </script>
 </body>
