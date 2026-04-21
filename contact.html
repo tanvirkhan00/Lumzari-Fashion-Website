@@ -1,355 +1,786 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — Noor Boutique</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root { --pink:#f8e8ee; --cream:#fffaf5; --beige:#f3e9dc; --navy:#1a2744; --gold:#c9a96e; --gold-light:#f0d9a8; }
-    * { scroll-behavior:smooth; }
-    body { font-family:'Poppins',sans-serif; background-color:var(--cream); color:var(--navy); }
-    h1,h2,h3,.serif { font-family:'Playfair Display',serif; }
-    .navbar { background:rgba(255,250,245,0.95); backdrop-filter:blur(12px); border-bottom:1px solid #f3e9dc; }
-    .nav-link { position:relative; color:var(--navy); font-size:0.875rem; font-weight:500; letter-spacing:0.03em; transition:color 0.3s; }
-    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--gold); transition:width 0.3s; }
-    .nav-link:hover::after,.nav-link.active::after { width:100%; }
-    .nav-link:hover { color:#c9a96e; }
-    .gold-btn { background:linear-gradient(135deg,#c9a96e,#b8924f); color:white; font-family:'Poppins',sans-serif; font-weight:500; letter-spacing:0.05em; transition:all 0.3s; box-shadow:0 4px 20px rgba(201,169,110,0.35); }
-    .gold-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,169,110,0.45); }
-    .form-input { width:100%; border:1.5px solid #e2d5c8; border-radius:0.75rem; padding:12px 16px; font-family:'Poppins',sans-serif; font-size:0.875rem; color:var(--navy); background:white; transition:border-color 0.3s, box-shadow 0.3s; outline:none; }
-    .form-input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,169,110,0.15); }
-    .form-input::placeholder { color:#b0a090; }
-    .contact-card { background:white; border-radius:1.25rem; box-shadow:0 2px 20px rgba(26,39,68,0.07); transition:all 0.3s; }
-    .contact-card:hover { transform:translateY(-4px); box-shadow:0 10px 35px rgba(26,39,68,0.12); }
-    .icon-circle { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
-    .ornament { display:flex; align-items:center; gap:12px; }
-    .ornament::before,.ornament::after { content:''; flex:1; height:1px; background:linear-gradient(to right,transparent,#c9a96e,transparent); }
-    .wa-btn { background:linear-gradient(135deg,#25d366,#1db954); color:white; font-family:'Poppins',sans-serif; font-weight:500; transition:all 0.3s; box-shadow:0 4px 20px rgba(37,211,102,0.35); }
-    .wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,211,102,0.45); }
-    .map-placeholder { background:linear-gradient(135deg,#e8f4e8,#dff2df); border:2px dashed #a8d8a8; border-radius:1.25rem; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-    .hamburger span { display:block; width:22px; height:2px; background:var(--navy); margin:5px 0; transition:all 0.3s; border-radius:2px; }
-    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    footer { background:#111827; }
-    .footer-link { color:#9ca3af; font-size:0.85rem; transition:color 0.3s; }
-    .footer-link:hover { color:var(--gold); }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    .fade-up { animation:fadeUp 0.7s ease forwards; }
-    .success-toast { position:fixed; bottom:24px; right:24px; background:var(--navy); color:white; border-radius:12px; padding:12px 20px; font-size:0.85rem; box-shadow:0 8px 30px rgba(0,0,0,0.2); transform:translateY(100px); opacity:0; transition:all 0.4s; z-index:100; }
-    .success-toast.show { transform:translateY(0); opacity:1; }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — Lumzari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:  #0d0d0d;
+    --ink2: #141414;
+    --ink3: #1a1a1a;
+    --gold: #b89a5e;
+    --gold-light: #d4b47a;
+    --gold-pale: rgba(184,154,94,.12);
+    --cream: #f5f0e8;
+    --muted: rgba(245,240,232,.45);
+    --body:  rgba(245,240,232,.72);
+    --border: rgba(184,154,94,.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ══ NAVBAR ══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(13,13,13,.95);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.6); }
+  .logo-mark { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--ink); flex-shrink: 0;
+  }
+  .logo-text { font-size: 13px; font-weight: 600; letter-spacing: 0.22em; color: var(--cream); }
+  .logo-text span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+  .nav-links a {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--body);
+    text-decoration: none; transition: color .25s; position: relative; white-space: nowrap;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--gold); transition: width .3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-right { display: flex; align-items: center; gap: 4px; }
+  .nav-icon-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--body); padding: 8px; border-radius: 2px;
+    transition: color .25s; position: relative; display: flex;
+  }
+  .nav-icon-btn:hover { color: var(--gold); }
+  .cart-count {
+    position: absolute; top: 2px; right: 2px;
+    width: 15px; height: 15px;
+    background: var(--gold); color: var(--ink);
+    font-size: 9px; font-weight: 700; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hamburger {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 8px; margin-left: 4px;
+  }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); border-radius: 2px; transition: all .3s; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+  .mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
+    background: rgba(13,13,13,.98); backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .35s;
+    padding: 0 24px;
+  }
+  .mobile-menu.open { max-height: 420px; padding: 18px 24px 28px; }
+  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; }
+  .mobile-menu ul li a {
+    display: block; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--body); text-decoration: none;
+    padding: 13px 8px; border-bottom: 1px solid rgba(184,154,94,.1);
+    transition: color .22s, padding-left .22s;
+  }
+  .mobile-menu ul li a:hover, .mobile-menu ul li a.active { color: var(--gold); padding-left: 14px; }
+  .mobile-menu ul li:last-child a { border-bottom: none; }
+
+  /* ══ HERO ══ */
+  .contact-hero {
+    position: relative; padding: 140px 48px 80px;
+    overflow: hidden; background: var(--ink2); min-height: 380px;
+  }
+  .contact-hero-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 40%;
+    opacity: 0.22; filter: saturate(0.5); z-index: 0;
+  }
+  .contact-hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(to right, rgba(13,13,13,.97) 30%, rgba(13,13,13,.55) 100%),
+      linear-gradient(to top, rgba(13,13,13,.95) 0%, transparent 50%);
+  }
+  .contact-hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 50% 70% at 75% 50%, rgba(184,154,94,.07) 0%, transparent 70%);
+  }
+  .contact-hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
+  }
+  .hero-tag {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 18px; background: var(--gold-pale);
+  }
+  .contact-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5.5vw, 80px);
+    font-weight: 600; line-height: 1.0; color: var(--cream); margin-bottom: 16px;
+  }
+  .contact-hero-title em { font-style: italic; color: var(--gold); }
+  .contact-hero-sub { font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.75; max-width: 420px; }
+  .hero-divider { position: relative; z-index: 2; width: 100%; height: 1px; background: var(--border); margin-top: 52px; }
+
+  /* ══ TRUST BAR ══ */
+  .trust-bar {
+    background: var(--ink2); border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; justify-content: center;
+  }
+  .trust-item {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--body); padding: 14px 24px;
+    display: flex; align-items: center; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { color: var(--gold); font-size: 8px; }
+
+  /* ══ CONTACT CARDS ══ */
+  .cards-section { padding: 72px 48px 0; }
+  .cards-inner { max-width: 1240px; margin: 0 auto; }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .contact-card {
+    background: var(--ink2); padding: 36px 28px; text-align: center;
+    transition: background .3s;
+  }
+  .contact-card:hover { background: var(--ink3); }
+  .card-icon {
+    width: 52px; height: 52px; margin: 0 auto 18px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--gold-pale);
+  }
+  .card-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600; color: var(--cream); margin-bottom: 8px;
+  }
+  .card-detail { font-size: 12px; font-weight: 300; color: var(--body); line-height: 1.75; }
+  .card-cta {
+    display: inline-block; margin-top: 14px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border);
+    padding-bottom: 2px; transition: border-color .25s;
+  }
+  .card-cta:hover { border-color: var(--gold); }
+
+  /* ══ MAIN SECTION ══ */
+  .main-section { padding: 72px 48px 96px; }
+  .main-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+
+  /* ── Form side ── */
+  .section-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 12px; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px); font-weight: 600;
+    color: var(--cream); line-height: 1.1; margin-bottom: 28px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .form-group { margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .form-label {
+    display: block; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .form-input {
+    width: 100%; background: var(--ink2); border: 1px solid var(--border);
+    color: var(--cream); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 300;
+    padding: 12px 14px; border-radius: 2px; outline: none;
+    transition: border-color .25s, background .25s;
+  }
+  .form-input::placeholder { color: var(--muted); }
+  .form-input:focus { border-color: var(--gold); background: var(--ink3); }
+  select.form-input { cursor: pointer; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b89a5e' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+  }
+  textarea.form-input { resize: vertical; min-height: 130px; }
+
+  .btn-gold {
+    display: inline-block; background: var(--gold); color: var(--ink);
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 14px 36px; border-radius: 1px; border: none;
+    cursor: pointer; transition: background .25s, transform .25s; width: 100%;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .form-note { font-size: 10px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+  /* ── Info side ── */
+  .info-side { display: flex; flex-direction: column; gap: 20px; }
+
+  .wa-card {
+    background: var(--ink2); border: 1px solid var(--border); padding: 28px;
+    transition: border-color .3s;
+  }
+  .wa-card:hover { border-color: rgba(37,211,102,.3); }
+  .wa-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .wa-icon-wrap {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(37,211,102,.1); border: 1px solid rgba(37,211,102,.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wa-icon-wrap svg { width: 20px; height: 20px; }
+  .wa-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--cream); }
+  .wa-sub { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+  .wa-desc { font-size: 12px; font-weight: 300; color: var(--body); line-height: 1.75; margin-bottom: 16px; }
+  .btn-wa {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; background: #25d366; color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 12px; border-radius: 1px; border: none;
+    text-decoration: none; cursor: pointer; transition: background .25s, transform .25s;
+  }
+  .btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+  .btn-wa svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
+
+  .social-card { background: var(--ink2); border: 1px solid var(--border); padding: 24px 28px; }
+  .social-card-title { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .social-row {
+    display: flex; align-items: center; gap: 12px; padding: 12px 0;
+    border-bottom: 1px solid var(--border); text-decoration: none;
+    transition: background .2s; cursor: pointer;
+  }
+  .social-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .social-row:first-of-type { padding-top: 0; }
+  .social-logo {
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .social-logo svg { width: 18px; height: 18px; }
+  .social-name { font-size: 12px; font-weight: 500; color: var(--cream); }
+  .social-handle { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .social-arrow { margin-left: auto; color: var(--muted); }
+  .social-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .social-row:hover .social-name { color: var(--gold); }
+  .social-row:hover .social-arrow { color: var(--gold); }
+
+  .map-card {
+    background: var(--ink2); border: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 32px 24px; text-align: center; gap: 12px;
+  }
+  .map-pin { color: var(--gold); }
+  .map-pin svg { width: 32px; height: 32px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .map-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--cream); }
+  .map-sub { font-size: 11px; color: var(--muted); }
+  .btn-map {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--border); padding: 8px 20px; border-radius: 1px;
+    text-decoration: none; transition: border-color .25s, background .25s;
+  }
+  .btn-map:hover { border-color: var(--gold); background: var(--gold-pale); }
+
+  /* ══ FAQ ══ */
+  .faq-section { padding: 0 48px 96px; background: var(--ink2); border-top: 1px solid var(--border); }
+  .faq-section-pad { padding-top: 72px; }
+  .faq-inner { max-width: 760px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 48px; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border); overflow: hidden;
+  }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-btn {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; gap: 16px; text-align: left;
+    transition: background .2s;
+  }
+  .faq-btn:hover .faq-question { color: var(--gold); }
+  .faq-question { font-size: 13px; font-weight: 500; color: var(--cream); line-height: 1.5; }
+  .faq-chevron {
+    width: 22px; height: 22px; flex-shrink: 0; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s, border-color .25s; background: var(--ink2);
+  }
+  .faq-chevron svg { width: 10px; height: 10px; stroke: var(--gold); fill: none; stroke-width: 2.5; }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); border-color: var(--gold); }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s cubic-bezier(.4,0,.2,1), padding .3s;
+    padding: 0 0;
+  }
+  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 18px; }
+  .faq-answer p { font-size: 12px; font-weight: 300; color: var(--body); line-height: 1.85; }
+
+  /* ══ TOAST ══ */
+  .toast {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    background: var(--ink2); border: 1px solid rgba(37,211,102,.35);
+    padding: 14px 20px; display: flex; align-items: center; gap: 10px;
+    transform: translateY(80px); opacity: 0;
+    transition: all .4s cubic-bezier(.25,.46,.45,.94);
+    pointer-events: none; min-width: 240px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-dot { width: 8px; height: 8px; background: #25d366; border-radius: 50%; flex-shrink: 0; }
+  .toast-text { font-size: 11px; color: var(--cream); }
+
+  /* ══ FOOTER ══ */
+  footer { background: var(--ink2); border-top: 1px solid var(--border); padding: 60px 48px 30px; }
+  .footer-grid {
+    max-width: 1240px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid var(--border);
+  }
+  .footer-tagline { font-size: 12px; color: var(--muted); line-height: 1.8; margin: 14px 0 22px; }
+  .footer-col h5 { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 12px; color: var(--body); text-decoration: none; transition: color .25s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; padding-top: 22px; flex-wrap: wrap; gap: 8px;
+  }
+  .footer-copy { font-size: 11px; color: var(--muted); }
+  .social-links { display: flex; gap: 8px; }
+  .social-btn {
+    width: 32px; height: 32px; border: 1px solid var(--border); color: var(--body);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 11px; font-weight: 600; border-radius: 2px; transition: all .25s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-pale); }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .contact-hero-text { animation: fadeUp .7s ease both; }
+  .fade-up { opacity: 0; }
+  .fade-up.visible { animation: fadeUp .7s ease forwards; }
+  .fade-up-delay-1.visible { animation-delay: .1s; }
+  .fade-up-delay-2.visible { animation-delay: .2s; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .contact-hero { padding: 120px 32px 64px; }
+    .cards-section, .main-section, .faq-section { padding-left: 32px; padding-right: 32px; }
+    .main-inner { gap: 44px; }
+    footer { padding: 50px 32px 26px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; height: 60px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: block; top: 60px; }
+
+    .contact-hero { padding: 100px 20px 52px; min-height: unset; }
+    .contact-hero-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .contact-hero-title { font-size: clamp(34px, 9vw, 52px); }
+
+    .cards-section { padding: 48px 20px 0; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .main-section { padding: 56px 20px 72px; }
+    .main-inner { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .form-row .form-group:first-child { margin-bottom: 20px; }
+    .faq-section { padding: 0 20px 72px; }
+
+    .trust-item { flex: 1 1 45%; border-right: none; border-bottom: 1px solid var(--border); justify-content: center; }
+    .trust-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    footer { padding: 44px 20px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 0 16px; }
+    .contact-hero { padding: 86px 16px 44px; }
+    .contact-hero-title { font-size: clamp(30px, 10vw, 42px); }
+    .cards-section { padding: 40px 16px 0; }
+    .main-section { padding: 44px 16px 60px; }
+    .faq-section { padding: 0 16px 60px; }
+    footer { padding: 36px 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .trust-item { flex: 1 1 100%; border-bottom: 1px solid var(--border); border-right: none; }
+    .trust-item:last-child { border-bottom: none; }
+  }
+
+  @media (max-width: 360px) {
+    nav { padding: 0 12px; }
+    .logo-text { font-size: 11px; letter-spacing: 0.14em; }
+  }
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
-    <a href="index.html" class="flex items-center gap-2">
-      <span class="text-2xl">🌸</span>
-      <div><span class="serif font-bold text-xl" style="color:var(--navy)">Noor</span><span class="serif font-bold text-xl" style="color:var(--gold)"> Boutique</span></div>
-    </a>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="shop.html" class="nav-link">Shop</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="contact.html" class="nav-link active">Contact</a>
-    </div>
-    <div class="flex items-center gap-4">
-      <button class="relative p-2 rounded-full hover:bg-pink-50 transition">
-        <svg class="w-5 h-5" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        <span class="absolute top-0 right-0 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center gold-btn">3</span>
-      </button>
-      <button class="hamburger md:hidden p-1" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div id="mobileMenu" class="hidden md:hidden px-5 pb-4 flex flex-col gap-3 border-t" style="border-color:#f3e9dc;background:rgba(255,250,245,0.98)">
-    <a href="index.html" class="nav-link py-2">Home</a>
-    <a href="shop.html" class="nav-link py-2">Shop</a>
-    <a href="about.html" class="nav-link py-2">About</a>
-    <a href="contact.html" class="nav-link py-2">Contact</a>
+<!-- ══ NAVBAR ══ -->
+<nav id="mainNav">
+  <a href="index.html" class="logo-mark">
+    <div class="logo-icon">L</div>
+    <span class="logo-text">LUMZARI<span>.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-icon-btn" title="Search">
+      <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="nav-icon-btn" title="Cart">
+      <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count">3</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- CONTACT HERO -->
-<section class="pt-28 pb-14 px-5" style="background:linear-gradient(135deg,#f8e8ee,#fffaf5,#f3e9dc)">
-  <div class="max-w-3xl mx-auto text-center fade-up">
-    <p class="text-xs tracking-widest uppercase font-semibold mb-3" style="color:var(--gold)">Get in Touch</p>
-    <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color:var(--navy)">
-      We'd Love to<br/>
-      <span class="italic" style="color:var(--gold)">Hear from You</span>
-    </h1>
-    <p class="text-gray-500 font-light max-w-md mx-auto">Have a question about sizing, custom orders, or bulk purchases? Our team is always here to help.</p>
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="contact-hero">
+  <img class="contact-hero-bg" src="/src/banner_1.jpg" alt=""/>
+  <div class="contact-hero-inner">
+    <div class="contact-hero-text">
+      <div class="hero-tag">Get in Touch</div>
+      <h1 class="contact-hero-title">We'd Love to<br/><em>Hear from You</em></h1>
+      <p class="contact-hero-sub">Have a question about sizing, custom orders, or bulk purchases? Our team is always here to help.</p>
+    </div>
   </div>
+  <div class="hero-divider"></div>
 </section>
 
-<!-- CONTACT CARDS -->
-<section class="py-12 px-5" style="background:var(--cream)">
-  <div class="max-w-4xl mx-auto">
-    <div class="grid md:grid-cols-3 gap-5">
+<!-- ══ TRUST BAR ══ -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">✦</span> Premium Quality Fabrics</div>
+  <div class="trust-item"><span class="trust-icon">✦</span> Child-Safe Materials</div>
+  <div class="trust-item"><span class="trust-icon">✦</span> Fast Bangladesh Delivery</div>
+  <div class="trust-item"><span class="trust-icon">✦</span> Halal Modest Fashion</div>
+</div>
 
-      <div class="contact-card p-6 text-center">
-        <div class="icon-circle mx-auto mb-4" style="background:var(--pink)">
-          <svg class="w-6 h-6" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+<!-- ══ CONTACT CARDS ══ -->
+<section class="cards-section">
+  <div class="cards-inner">
+    <div class="cards-grid">
+      <div class="contact-card fade-up">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <h4 class="font-semibold mb-1" style="color:var(--navy)">Our Location</h4>
-        <p class="text-sm text-gray-500 font-light">Mirpur, Dhaka<br/>Bangladesh</p>
+        <div class="card-title">Our Location</div>
+        <p class="card-detail">Mirpur, Dhaka<br/>Bangladesh</p>
+        <a href="https://maps.google.com/?q=Mirpur,Dhaka" target="_blank" class="card-cta">Open in Maps</a>
       </div>
 
-      <div class="contact-card p-6 text-center">
-        <div class="icon-circle mx-auto mb-4" style="background:#e8f9ee">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style="color:#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <div class="contact-card fade-up fade-up-delay-1">
+        <div class="card-icon" style="background: rgba(37,211,102,.08); border-color: rgba(37,211,102,.2);">
+          <svg viewBox="0 0 24 24" style="stroke: #25d366;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
         </div>
-        <h4 class="font-semibold mb-1" style="color:var(--navy)">WhatsApp</h4>
-        <p class="text-sm text-gray-500 font-light mb-3">Chat with us directly</p>
-        <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="wa-btn text-xs px-5 py-2 rounded-full inline-block">Message Us</a>
+        <div class="card-title">WhatsApp</div>
+        <p class="card-detail">Fastest way to reach us<br/>Sun – Thu, 9am – 8pm</p>
+        <a href="https://wa.me/8801XXXXXXXXX" target="_blank" class="card-cta" style="color:#25d366; border-color: rgba(37,211,102,.3);">Chat Now</a>
       </div>
 
-      <div class="contact-card p-6 text-center">
-        <div class="icon-circle mx-auto mb-4" style="background:var(--beige)">
-          <svg class="w-6 h-6" fill="none" stroke="var(--navy)" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <div class="contact-card fade-up fade-up-delay-2">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
-        <h4 class="font-semibold mb-1" style="color:var(--navy)">Email Us</h4>
-        <p class="text-sm text-gray-500 font-light mb-1">hello@noorboutique.com</p>
-        <p class="text-xs text-gray-400">Reply within 24 hours</p>
+        <div class="card-title">Email Us</div>
+        <p class="card-detail">hello@lumzari.com<br/>Reply within 24 hours</p>
+        <a href="mailto:hello@lumzari.com" class="card-cta">Send Email</a>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- CONTACT FORM + MAP -->
-<section class="py-16 px-5" style="background:var(--pink)">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-12">
+<!-- ══ FORM + INFO ══ -->
+<section class="main-section">
+  <div class="main-inner">
 
-      <!-- FORM -->
-      <div>
-        <p class="text-xs tracking-widest uppercase font-semibold mb-3" style="color:var(--gold)">Send a Message</p>
-        <h2 class="text-3xl font-bold serif mb-6" style="color:var(--navy)">We're Here to Help</h2>
+    <!-- FORM -->
+    <div class="fade-up">
+      <span class="section-tag">Send a Message</span>
+      <h2 class="section-title">We're Here<br/>to <em>Help</em></h2>
 
-        <div class="bg-white rounded-2xl shadow-sm p-8">
-          <div class="space-y-5">
-            <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Full Name</label>
-                <input type="text" class="form-input" placeholder="Your name" id="nameInput"/>
-              </div>
-              <div>
-                <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Email Address</label>
-                <input type="email" class="form-input" placeholder="Your email" id="emailInput"/>
-              </div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Subject</label>
-              <select class="form-input" id="subjectInput">
-                <option value="">Select a topic...</option>
-                <option>Order Inquiry</option>
-                <option>Custom Order</option>
-                <option>Size & Fit</option>
-                <option>Bulk / Wholesale</option>
-                <option>Feedback</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--navy)">Message</label>
-              <textarea class="form-input" rows="5" placeholder="Tell us how we can help..." id="messageInput"></textarea>
-            </div>
-            <button onclick="submitForm()" class="gold-btn w-full py-4 rounded-xl text-sm">
-              Send Message ✉
-            </button>
-          </div>
-
-          <!-- Response Time -->
-          <p class="text-center text-xs text-gray-400 mt-4">🕐 We typically respond within 24 hours (Sun–Thu)</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" placeholder="Your name" id="nameInput"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="Your email" id="emailInput"/>
         </div>
       </div>
 
-      <!-- INFO + MAP -->
-      <div class="flex flex-col gap-6">
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <select class="form-input" id="subjectInput">
+          <option value="">Select a topic…</option>
+          <option>Order Inquiry</option>
+          <option>Custom Order</option>
+          <option>Size &amp; Fit</option>
+          <option>Bulk / Wholesale</option>
+          <option>Feedback</option>
+          <option>Other</option>
+        </select>
+      </div>
 
-        <!-- WhatsApp CTA -->
-        <div class="bg-white rounded-2xl shadow-sm p-6">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:#e8f9ee">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style="color:#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </div>
-            <div>
-              <h4 class="font-semibold" style="color:var(--navy)">Chat on WhatsApp</h4>
-              <p class="text-xs text-gray-400">Fastest way to reach us</p>
-            </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-input" id="messageInput" placeholder="Tell us how we can help…"></textarea>
+      </div>
+
+      <button class="btn-gold" onclick="submitForm()">Send Message</button>
+      <p class="form-note">✦ We typically respond within 24 hours (Sun – Thu)</p>
+    </div>
+
+    <!-- INFO -->
+    <div class="info-side fade-up fade-up-delay-1">
+
+      <!-- WhatsApp -->
+      <div class="wa-card">
+        <div class="wa-card-header">
+          <div class="wa-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </div>
-          <p class="text-sm text-gray-500 mb-4 font-light">For quick order inquiries, size questions, or custom requests — WhatsApp is the fastest way to get a response from our team.</p>
-          <a href="https://wa.me/8801XXXXXXXXX?text=Hello%20Noor%20Boutique!%20I%20have%20a%20question%20about..." target="_blank" class="wa-btn flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-sm w-full">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Open WhatsApp Chat
-          </a>
-        </div>
-
-        <!-- Social Links -->
-        <div class="bg-white rounded-2xl shadow-sm p-6">
-          <h4 class="font-semibold mb-4" style="color:var(--navy)">Follow Us on Social Media</h4>
-          <div class="flex flex-col gap-3">
-            <a href="#" class="flex items-center gap-3 p-3 rounded-xl transition hover:bg-gray-50">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:#1877f2">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium" style="color:var(--navy)">Facebook</p>
-                <p class="text-xs text-gray-400">@NoorboutiqueOfficial</p>
-              </div>
-              <svg class="w-4 h-4 text-gray-300 ml-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#" class="flex items-center gap-3 p-3 rounded-xl transition hover:bg-gray-50">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium" style="color:var(--navy)">Instagram</p>
-                <p class="text-xs text-gray-400">@noor.boutique.bd</p>
-              </div>
-              <svg class="w-4 h-4 text-gray-300 ml-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-            </a>
+          <div>
+            <div class="wa-title">Chat on WhatsApp</div>
+            <div class="wa-sub">Fastest response — usually within minutes</div>
           </div>
         </div>
-
-        <!-- Map Placeholder -->
-        <div class="map-placeholder" style="height:200px">
-          <svg class="w-10 h-10 mb-2" style="color:#68a868" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          <p class="font-semibold text-sm" style="color:#3a7a3a">Mirpur, Dhaka</p>
-          <p class="text-xs text-gray-500 mt-1">Bangladesh</p>
-          <a href="https://maps.google.com/?q=Mirpur,Dhaka" target="_blank" class="mt-3 text-xs font-medium px-4 py-1.5 rounded-full" style="background:#25a025;color:white">Open in Maps</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="py-16 px-5" style="background:var(--cream)">
-  <div class="max-w-2xl mx-auto">
-    <div class="text-center mb-10">
-      <p class="text-xs tracking-widest uppercase font-semibold mb-2" style="color:var(--gold)">FAQs</p>
-      <h2 class="text-3xl font-bold serif" style="color:var(--navy)">Common Questions</h2>
-    </div>
-    <div class="space-y-4" id="faqContainer">
-
-      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="font-medium text-sm" style="color:var(--navy)">Do you offer custom sizing for kids?</span>
-          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-body hidden px-6 pb-4">
-          <p class="text-sm text-gray-500 font-light">Yes! We offer custom sizing for most of our dresses and abayas. Contact us on WhatsApp with your child's measurements and we'll create something perfect for them.</p>
-        </div>
+        <p class="wa-desc">For quick order inquiries, size questions, or custom requests — WhatsApp is the fastest way to get a reply from our team.</p>
+        <a href="https://wa.me/8801XXXXXXXXX?text=Hello%20Lumzari!%20I%20have%20a%20question%20about..." target="_blank" class="btn-wa">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Open WhatsApp Chat
+        </a>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="font-medium text-sm" style="color:var(--navy)">How long does delivery take?</span>
-          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-body hidden px-6 pb-4">
-          <p class="text-sm text-gray-500 font-light">Standard delivery within Dhaka takes 2–3 days. Outside Dhaka (nationwide) typically 4–7 working days via courier service.</p>
-        </div>
+      <!-- Social -->
+      <div class="social-card">
+        <div class="social-card-title">Follow Us</div>
+
+        <a href="#" class="social-row">
+          <div class="social-logo" style="background:#1877f2; border-radius:2px;">
+            <svg fill="#fff" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div>
+            <div class="social-name">Facebook</div>
+            <div class="social-handle">@LumzariOfficial</div>
+          </div>
+          <div class="social-arrow"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="social-row">
+          <div class="social-logo" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888); border-radius:2px;">
+            <svg fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg>
+          </div>
+          <div>
+            <div class="social-name">Instagram</div>
+            <div class="social-handle">@lumzari.bd</div>
+          </div>
+          <div class="social-arrow"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </a>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="font-medium text-sm" style="color:var(--navy)">Do you accept returns or exchanges?</span>
-          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-body hidden px-6 pb-4">
-          <p class="text-sm text-gray-500 font-light">We accept exchanges within 7 days of delivery for sizing issues. Items must be unworn and in original condition. Please contact us via WhatsApp to initiate an exchange.</p>
+      <!-- Map -->
+      <div class="map-card">
+        <div class="map-pin">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-      </div>
-
-      <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <button class="w-full text-left px-6 py-4 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="font-medium text-sm" style="color:var(--navy)">Can I place bulk/wholesale orders for Eid?</span>
-          <svg class="w-5 h-5 faq-icon transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div class="faq-body hidden px-6 pb-4">
-          <p class="text-sm text-gray-500 font-light">Absolutely! We welcome bulk orders for madrasa uniforms, Eid gifts, and boutique resellers. Contact us at least 3 weeks in advance for bulk pricing and availability.</p>
-        </div>
+        <div class="map-title">Mirpur, Dhaka</div>
+        <div class="map-sub">Bangladesh</div>
+        <a href="https://maps.google.com/?q=Mirpur,Dhaka" target="_blank" class="btn-map">Open in Google Maps</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="py-14 px-5">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-10 mb-10">
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-2xl">🌸</span>
-          <span class="serif font-bold text-xl text-white">Noor <span style="color:var(--gold)">Boutique</span></span>
-        </div>
-        <p class="text-sm leading-relaxed mb-5" style="color:#6b7280">Crafting graceful, modest Islamic clothing for your little ones.</p>
-        <div class="flex gap-4">
-          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#1877f2">
-            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          </a>
-          <a href="https://wa.me/8801XXXXXXXXX" class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#25d366">
-            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </a>
-        </div>
+<!-- ══ FAQ ══ -->
+<section class="faq-section">
+  <div class="faq-section-pad">
+    <div class="faq-inner">
+      <div class="faq-header fade-up">
+        <span class="section-tag" style="display:block; text-align:center;">FAQs</span>
+        <h2 class="section-title" style="text-align:center; margin-bottom:0;">Common <em>Questions</em></h2>
       </div>
-      <div>
-        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="footer-link">Home</a></li>
-          <li><a href="shop.html" class="footer-link">Shop</a></li>
-          <li><a href="about.html" class="footer-link">About Us</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
-        </ul>
+
+      <div class="faq-item fade-up">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Do you offer custom sizing for kids?</span>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Yes! We offer custom sizing for most of our dresses and abayas. Contact us on WhatsApp with your child's measurements and we'll create something perfect for them.</p></div>
       </div>
-      <div>
-        <h5 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h5>
-        <ul class="space-y-2">
-          <li class="footer-link">📍 Dhaka, Bangladesh</li>
-          <li><a href="https://wa.me/8801XXXXXXXXX" class="footer-link">💬 WhatsApp Us</a></li>
-          <li><a href="mailto:hello@noorboutique.com" class="footer-link">✉ hello@noorboutique.com</a></li>
-        </ul>
+
+      <div class="faq-item fade-up">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">How long does delivery take?</span>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Standard delivery within Dhaka takes 2–3 days. Outside Dhaka (nationwide) typically 4–7 working days via courier service.</p></div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Do you accept returns or exchanges?</span>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>We accept exchanges within 7 days of delivery for sizing issues. Items must be unworn and in original condition. Please contact us via WhatsApp to initiate an exchange.</p></div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Can I place bulk or wholesale orders for Eid?</span>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Absolutely! We welcome bulk orders for madrasa uniforms, Eid gifts, and boutique resellers. Contact us at least 3 weeks in advance for bulk pricing and availability.</p></div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">What payment methods do you accept?</span>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>We accept bKash, Nagad, bank transfer, and cash on delivery within Dhaka. For wholesale orders, bank transfer is preferred. WhatsApp us for payment details.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="logo-mark">
+        <div class="logo-icon">L</div>
+        <span class="logo-text">LUMZARI<span>.</span></span>
+      </a>
+      <p class="footer-tagline">Crafting graceful, modest Islamic clothing for your little ones. Quality you can trust, values you can wear.</p>
+      <div class="social-links">
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#" style="font-size:10px">ig</a>
+        <a class="social-btn" href="#" style="font-size:10px">wa</a>
       </div>
     </div>
-    <div class="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style="border-color:#1f2937">
-      <p class="text-xs" style="color:#4b5563">© 2025 Noor Boutique. All rights reserved.</p>
-      <p class="text-xs" style="color:#4b5563">Made with 🌸 for Little Hearts</p>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#">Girls Dresses</a></li>
+        <li><a href="#">Borka &amp; Abaya</a></li>
+        <li><a href="#">Hijab Collection</a></li>
+        <li><a href="#">Eid Special</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Lumzari</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">Dhaka, Bangladesh</a></li>
+        <li><a href="#">WhatsApp Us</a></li>
+        <li><a href="#">hello@lumzari.com</a></li>
+        <li><a href="#">Returns Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Lumzari. All rights reserved.</span>
+    <span class="footer-copy">Made with care for little hearts.</span>
   </div>
 </footer>
 
 <!-- Toast -->
-<div class="success-toast" id="toast">✅ Message sent! We'll reply within 24 hours.</div>
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  <span class="toast-text">Message sent! We'll reply within 24 hours.</span>
+</div>
 
 <script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
   function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-    document.getElementById('menuBtn').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
 
+  document.addEventListener('click', e => {
+    const nav = document.getElementById('mainNav');
+    const menu = document.getElementById('mobileMenu');
+    if (!nav.contains(e.target) && !menu.contains(e.target)) {
+      document.getElementById('hamburger').classList.remove('open');
+      menu.classList.remove('open');
+    }
+  });
+
   function toggleFaq(btn) {
-    const body = btn.nextElementSibling;
-    const icon = btn.querySelector('.faq-icon');
-    body.classList.toggle('hidden');
-    icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
 
   function submitForm() {
     const name = document.getElementById('nameInput').value.trim();
     const email = document.getElementById('emailInput').value.trim();
     const message = document.getElementById('messageInput').value.trim();
-    if(!name || !email || !message) {
+    if (!name || !email || !message) {
       alert('Please fill in all required fields.');
       return;
     }
@@ -362,9 +793,12 @@
     document.getElementById('messageInput').value = '';
   }
 
-  window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)';
-  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
